@@ -1,3 +1,3 @@
 Name	Slug	Description	Active
 admin	admin	Admin users can control inventories	TRUE
-guest	guest	These are registered user	TRUE
+customer	customer	These are registered user	TRUE

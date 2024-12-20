@@ -16,7 +16,9 @@ return new class extends Migration {
       $table->foreignIdFor(UserRole::class)->constrained()->restrictOnDelete();
       $table->string('firstname')->max(255);
       $table->string('lastname')->max(255);
-      $table->string('email')->max(255)->unique();
+      $table->string('email')->max(100)->unique();
+      $table->string('country_code')->max(4);
+      $table->string('phone')->max(15)->unique();
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
       $table->rememberToken();

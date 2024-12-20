@@ -2,62 +2,70 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class UserRoleSeeder extends Seeder
+class UserSeeder extends Seeder
 {
   /**
    * Run the database seeds.
    */
   public function run(): void
   {
-    $table_name = 'user_roles';
-    $model = UserRole::class;
-    $seeding_file_name = storage_path('database_seeding_files/' . 'user_roles.tsv');
+    $table_name = 'users';
+    $model = User::class;
+    $seeding_file_name = storage_path('database_seeding_files/' . 'users.tsv');
     $columns = [
       [
-        'column_name' => 'name',
-        'key' => 'Name',
-        'column_type' => 'value',
-        'reference_model' => null,
-        'reference_column' => null,
-        // index of the record in a row
-        // to be filled
+        'column_name' => 'user_role_id',
+        'key' => 'User Role',
+        'column_type' => 'relationship',
+        'reference_model' => UserRole::class,
+        'reference_column' => 'id',
         'lookup_index' => null,
       ],
 
       [
-        'column_name' => 'slug',
-        'key' => 'Slug',
+        'column_name' => 'firstname',
+        'key' => 'First Name',
         'column_type' => 'value',
-        'reference_model' => null,
-        'reference_column' => null,
-        // index of the record in a row
-        // to be filled
         'lookup_index' => null,
       ],
 
       [
-        'column_name' => 'description',
-        'key' => 'Description',
+        'column_name' => 'lastname',
+        'key' => 'Last Name',
         'column_type' => 'value',
-        'reference_model' => null,
-        'reference_column' => null,
-        // index of the record in a row
-        // to be filled
         'lookup_index' => null,
       ],
 
       [
-        'column_name' => 'active',
-        'key' => 'Active',
-        'column_type' => 'boolean',
-        'reference_model' => null,
-        'reference_column' => null,
-        // index of the record in a row
-        // to be filled
+        'column_name' => 'email',
+        'key' => 'Email',
+        'column_type' => 'value',
+        'lookup_index' => null,
+      ],
+
+      [
+        'column_name' => 'country_code',
+        'key' => 'Country Code',
+        'column_type' => 'value',
+        'lookup_index' => null,
+      ],
+
+      [
+        'column_name' => 'phone',
+        'key' => 'Phone',
+        'column_type' => 'value',
+        'lookup_index' => null,
+      ],
+
+      [
+        'column_name' => 'password',
+        'key' => 'Password',
+        'column_type' => 'password',
         'lookup_index' => null,
       ],
     ];
@@ -112,6 +120,20 @@ class UserRoleSeeder extends Seeder
           } else {
             $value_to_be_inserted = false;
           }
+        } else if ($column_type === 'password') {
+          $value_to_be_inserted = bcrypt($value_in_record);
+        } else if ($column_type === 'relationship') {
+          $reference_model = $column['reference_model'];
+          $reference_column = $column['reference_column'];
+
+          $record = $reference_model::where('name', $value_in_record)->first();
+
+          if ($record === null) {
+            echo "Record with name {$value_in_record} not found in {$reference_model} table.\n";
+            return;
+          }
+
+          $value_to_be_inserted = $record->$reference_column;
         }
 
 

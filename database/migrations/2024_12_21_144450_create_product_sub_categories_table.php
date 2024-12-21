@@ -21,7 +21,7 @@ return new class extends Migration {
       $table->boolean('active')->default(true);
       $table->boolean('available')->default(true);
       $table->string('icon')->nullable();
-      $table->string('thumbnail_image')->nullable(); // 128x128px
+      $table->string('thumbnail')->nullable(); // 128x128px
       $table->string('header_image')->nullable(); // 1024x256px
       $table->timestamps();
     });

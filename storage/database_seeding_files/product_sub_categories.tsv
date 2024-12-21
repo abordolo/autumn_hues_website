@@ -1,0 +1,5 @@
+Product Category	Name	Slug	Description	Order	Active	Available	Icon	Thumbnail	Header Image
+Jewelry	Pendants	pendants	Description	1	TRUE	TRUE	/icons/product-categories/pendants.svg	/thumbnails/product-categories/pendants.png	/images/product-categories/pendants.png
+Jewelry	Ear Rings	ear-rings	Description	2	TRUE	TRUE	/icons/product-categories/ear-rings.svg	/thumbnails/product-categories/ear-rings.png	/images/product-categories/ear-rings.png
+Eco Products	Mugs	mugs	Description	3	TRUE	TRUE	/icons/product-categories/mugs.svg	/thumbnails/product-categories/mugs.png	/images/product-categories/mugs.png
+Eco Products	Wallets	wallets	Description	4	TRUE	TRUE	/icons/product-categories/wallets.svg	/thumbnails/product-categories/wallets.png	/images/product-categories/wallets.png

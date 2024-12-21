@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\UserRole;
+use App\Models\VariationType;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,8 @@ class DatabaseSeeder extends Seeder
       UserSeeder::class,
       ProductCategorySeeder::class,
       ProductSubCategorySeeder::class,
+      ProductSeeder::class,
+      VariationTypeSeeder::class,
     ]);
   }
 }

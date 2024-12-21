@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
       ProductSubCategorySeeder::class,
       ProductSeeder::class,
       VariationTypeSeeder::class,
+      ProductSkuSeeder::class,
     ]);
   }
 }

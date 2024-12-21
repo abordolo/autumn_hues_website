@@ -1,0 +1,41 @@
+Product Category	Product Sub Category	Product	Name	Description	Price	Stock	Active
+Jewelry	Pendants	Pendant 1	Pendant 1 (Red, XS)	Color: Red, Size: XS	200	100	TRUE
+Jewelry	Pendants	Pendant 1	Pendant 1 (Red, S)	Color: Red, Size: S	225	100	TRUE
+Jewelry	Pendants	Pendant 1	Pendant 1 (Red, M)	Color: Red, Size: M	250	100	TRUE
+Jewelry	Pendants	Pendant 1	Pendant 1 (Red, L)	Color: Red, Size: L	300	100	TRUE
+Jewelry	Pendants	Pendant 1	Pendant 1 (Green, XS)	Color: Green, Size: XS	200	100	TRUE
+Jewelry	Pendants	Pendant 1	Pendant 1 (Green, S)	Color: Green, Size: S	225	100	TRUE
+Jewelry	Pendants	Pendant 1	Pendant 1 (Green, M)	Color: Green, Size: M	250	100	TRUE
+Jewelry	Pendants	Pendant 1	Pendant 1 (Green, L)	Color: Green, Size: L	300	100	TRUE
+Jewelry	Pendants	Pendant 2	Pendant 2 (Red, XS)	Color: Red, Size: XS	200	100	TRUE
+Jewelry	Pendants	Pendant 2	Pendant 2 (Red, S)	Color: Red, Size: S	225	100	TRUE
+Jewelry	Pendants	Pendant 2	Pendant 2 (Red, M)	Color: Red, Size: M	250	100	TRUE
+Jewelry	Pendants	Pendant 2	Pendant 2 (Red, L)	Color: Red, Size: L	300	100	TRUE
+Jewelry	Pendants	Pendant 2	Pendant 2 (Green, XS)	Color: Green, Size: XS	200	100	TRUE
+Jewelry	Pendants	Pendant 2	Pendant 2 (Green, S)	Color: Green, Size: S	225	100	TRUE
+Jewelry	Pendants	Pendant 2	Pendant 2 (Green, M)	Color: Green, Size: M	250	100	TRUE
+Jewelry	Pendants	Pendant 2	Pendant 2 (Green, L)	Color: Green, Size: L	300	100	TRUE
+Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Red, XS)	Color: Red, Size: XS	100	100	TRUE
+Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Red, S)	Color: Red, Size: S	125	100	TRUE
+Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Red, M)	Color: Red, Size: M	150	100	TRUE
+Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Red, L)	Color: Red, Size: L	175	100	TRUE
+Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Green, XS)	Color: Green, Size: XS	100	100	TRUE
+Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Green, S)	Color: Green, Size: S	125	100	TRUE
+Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Green, M)	Color: Green, Size: M	150	100	TRUE
+Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Green, L)	Color: Green, Size: L	175	100	TRUE
+Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Red, XS)	Color: Red, Size: XS	100	100	TRUE
+Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Red, S)	Color: Red, Size: S	125	100	TRUE
+Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Red, M)	Color: Red, Size: M	150	100	TRUE
+Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Red, L)	Color: Red, Size: L	175	100	TRUE
+Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Green, XS)	Color: Green, Size: XS	100	100	TRUE
+Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Green, S)	Color: Green, Size: S	125	100	TRUE
+Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Green, M)	Color: Green, Size: M	150	100	TRUE
+Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Green, L)	Color: Green, Size: L	175	100	TRUE
+Eco Products	Mugs	Mug 1	Mug 1 (Black)	Color: Black	500	100	TRUE
+Eco Products	Mugs	Mug 1	Mug 1 (Brown)	Color: Brown	500	100	TRUE
+Eco Products	Mugs	Mug 2	Mug 2 (Black)	Color: Black	650	100	TRUE
+Eco Products	Mugs	Mug 2	Mug 2 (Brown)	Color: Brown	650	100	TRUE
+Eco Products	Wallets	Wallet 1	Wallet 1 (Black)	Color: Black	850	100	TRUE
+Eco Products	Wallets	Wallet 1	Wallet 1 (Brown)	Color: Brown	850	100	TRUE
+Eco Products	Wallets	Wallet 2	Wallet 2 (Black)	Color: Black	950	100	TRUE
+Eco Products	Wallets	Wallet 2	Wallet 2 (Brown)	Color: Brown	950	100	TRUE

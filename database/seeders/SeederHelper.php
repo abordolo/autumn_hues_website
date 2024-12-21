@@ -6,153 +6,103 @@ use App\Models\UserRole;
 
 class SeederHelper
 {
+  public static function getColumnDefinition(
+    // name of the column in database
+    $column_name,
 
-  public static function getReferenceColumn($referenceModel, $referenceColumn = 'id')
-  {
+    // name of the column in the seeding file
+    $key,
+
+    // value | boolean | reference
+    $column_type = 'value',
+
+    // model to refer to for the reference column
+    $reference_model = null,
+
+    // column to refer to for the reference column
+    $reference_column = 'name'
+  ) {
     return [
-      'column_name' => 'user_role_id',
-      'key' => 'User Role',
-      'column_type' => 'relationship',
-      'reference_model' => $referenceModel,
-      'reference_column' => $referenceColumn,
-      'lookup_index' => null,
+      'column_name' => $column_name,
+      'key' => $key,
+      'column_type' => $column_type,
+      'reference_model' => $reference_model,
+      'reference_column' => $reference_column
     ];
   }
 
-  public static $firstname = [
-    'column_name' => 'firstname',
-    'key' => 'First Name',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+  // open seeding file
+  public static function openSeedingFile($seeding_file_name)
+  {
+    // check if file exists
+    if (!file_exists($seeding_file_name)) {
+      dd("ERROR: File does not exist: {$seeding_file_name}\n");
+    }
 
-  public static $lastname = [
-    'column_name' => 'lastname',
-    'key' => 'Last Name',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+    return fopen($seeding_file_name, "r");
+  }
 
-  public static $email = [
-    'column_name' => 'email',
-    'key' => 'Email',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+  // get column indices
+  public static function getColumnIndices($fh, $columns)
+  {
+    $line = fgets($fh);
+    $line = str_replace(array("\r", "\n"), '', $line);
+    $headers = preg_split("/[\t]/", $line);
 
-  public static $country_code = [
-    'column_name' => 'country_code',
-    'key' => 'Country Code',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+    $columnIndices = [];
 
-  public static $phone = [
-    'column_name' => 'phone',
-    'key' => 'Phone',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+    // create array of indices for the column names
+    for ($i = 0; $i < count($columns); $i++) {
+      $column_name = $columns[$i]['column_name'];
+      $key = $columns[$i]['key'];
 
-  public static $password = [
-    'column_name' => 'password',
-    'key' => 'Password',
-    'column_type' => 'password',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+      $index = array_search($key, $headers);
+      if ($index === false) {
+        dd("ERROR: Key ({$key}) for column name ({$column_name}) is not found in the header.\n");
+      }
 
-  public static $name = [
-    'column_name' => 'name',
-    'key' => 'Name',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+      $columnIndices[$column_name] = $index;
+    }
 
-  public static $slug = [
-    'column_name' => 'slug',
-    'key' => 'Slug',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+    return $columnIndices;
+  }
 
-  public static $description = [
-    'column_name' => 'description',
-    'key' => 'Description',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+  // get value to be inserted
+  public static function getValueToBeInserted($column, $value_in_record)
+  {
+    $column_type = $column['column_type'];
 
-  public static $order = [
-    'column_name' => 'order',
-    'key' => 'Order',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+    $value_to_be_inserted = null;
 
-  public static $active = [
-    'column_name' => 'active',
-    'key' => 'Active',
-    'column_type' => 'boolean',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+    switch ($column_type) {
+      case 'value':
+        $value_to_be_inserted = $value_in_record;
+        break;
+      case 'boolean':
+        if ($value_in_record == 'TRUE' || $value_in_record == 1) {
+          $value_to_be_inserted = true;
+        } else {
+          $value_to_be_inserted = false;
+        }
+        break;
+      case 'password':
+        $value_to_be_inserted = bcrypt($value_in_record);
+        break;
+      case 'relationship':
+        $reference_model = $column['reference_model'];
+        $reference_column = $column['reference_column'];
 
-  public static $available = [
-    'column_name' => 'available',
-    'key' => 'Available',
-    'column_type' => 'boolean',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+        $record = $reference_model::where($reference_column, $value_in_record)->first();
 
-  public static $icon = [
-    'column_name' => 'icon',
-    'key' => 'Icon Image',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+        // dd($record);
+        if ($record === null) {
+          dd("ERROR: Record with name {$value_in_record} not found in {$reference_model} table.\n");
+        }
 
-  public static $thumbnail_image = [
-    'column_name' => 'thumbnail_image',
-    'key' => 'Thumbnail Image',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
+        $value_to_be_inserted = $record->id;
+        break;
+    }
 
-  public static $header_image = [
-    'column_name' => 'header_image',
-    'key' => 'Header Image',
-    'column_type' => 'value',
-    'reference_model' => null,
-    'reference_column' => null,
-    'lookup_index' => null,
-  ];
-
-
+    return $value_to_be_inserted;
+  }
 }

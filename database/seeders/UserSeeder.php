@@ -17,14 +17,20 @@ class UserSeeder extends Seeder
     $table_name = 'users';
     $model = User::class;
     $seeding_file_name = storage_path('database_seeding_files/' . 'users.tsv');
+
     $columns = [
-      SeederHelper::getReferenceColumn(UserRole::class),
-      SeederHelper::$firstname,
-      SeederHelper::$lastname,
-      SeederHelper::$email,
-      SeederHelper::$country_code,
-      SeederHelper::$phone,
-      SeederHelper::$password,
+      SeederHelper::getColumnDefinition(
+        'user_role_id',
+        'User Role',
+        'relationship',
+        UserRole::class
+      ),
+      SeederHelper::getColumnDefinition('firstname', 'First Name'),
+      SeederHelper::getColumnDefinition('lastname', 'Last Name'),
+      SeederHelper::getColumnDefinition('email', 'Email'),
+      SeederHelper::getColumnDefinition('country_code', 'Country Code'),
+      SeederHelper::getColumnDefinition('phone', 'Phone'),
+      SeederHelper::getColumnDefinition('password', 'Password', 'password'),
     ];
 
     if (count($model::all()) > 0) {
@@ -32,25 +38,10 @@ class UserSeeder extends Seeder
       return;
     }
 
-    $fh = fopen($seeding_file_name, "r");
-    $line = fgets($fh);
-    $line = str_replace(array("\r", "\n"), '', $line);
-    $headers = preg_split("/[\t]/", $line);
+    $fh = SeederHelper::openSeedingFile($seeding_file_name);
 
-    // create array of indices for the column names
-    for ($i = 0; $i < count($columns); $i++) {
-      $column_name = $columns[$i]['column_name'];
-      $key = $columns[$i]['key'];
-
-      $index = array_search($key, $headers);
-      if ($index === false) {
-        echo "Key ({$key}) for column name ({$column_name}) is not found in the header.\n";
-        return;
-      }
-
-      $columns[$i]['lookup_index'] = $index;
-      // echo "name: {$name}, key: {$key}, type: {$type}, lookup_index: {$column['lookup_index']}\n";
-    }
+    // ['column_key' => index1, 'column_key' => index2, ...]
+    $columnIndices = SeederHelper::getColumnIndices($fh, $columns);
 
     // iterate over the rows in the file
     while (($line = fgets($fh)) !== false) {
@@ -60,43 +51,20 @@ class UserSeeder extends Seeder
       $data = [];
       foreach ($columns as $column) {
         $column_name = $column['column_name'];
-        $column_type = $column['column_type'];
-        $lookup_index = $column['lookup_index'];
+        $lookup_index = $columnIndices[$column_name];
 
-        // echo "name: {$name}, lookup_index: {$lookup_index}\n";
+        if ($lookup_index === false) {
+          dd("Index not found for column name {$column_name}.\n");
+        }
 
         $value_in_record = $fields[$lookup_index];
 
-        $value_to_be_inserted = null;
-
-        if ($column_type === 'value') {
-          $value_to_be_inserted = $value_in_record;
-        } else if ($column_type === 'boolean') {
-          if ($value_in_record == 'TRUE' || $value_in_record == 1) {
-            $value_to_be_inserted = true;
-          } else {
-            $value_to_be_inserted = false;
-          }
-        } else if ($column_type === 'password') {
-          $value_to_be_inserted = bcrypt($value_in_record);
-        } else if ($column_type === 'relationship') {
-          $reference_model = $column['reference_model'];
-          $reference_column = $column['reference_column'];
-
-          $record = $reference_model::where('name', $value_in_record)->first();
-
-          if ($record === null) {
-            echo "Record with name {$value_in_record} not found in {$reference_model} table.\n";
-            return;
-          }
-
-          $value_to_be_inserted = $record->$reference_column;
-        }
-
+        $value_to_be_inserted = SeederHelper::getValueToBeInserted($column, $value_in_record);
 
         $data[$column_name] = $value_to_be_inserted;
       }
 
+      // dd($data);
       $model::create($data);
     }
 

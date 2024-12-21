@@ -16,11 +16,12 @@ class UserRoleSeeder extends Seeder
     $table_name = 'user_roles';
     $model = UserRole::class;
     $seeding_file_name = storage_path('database_seeding_files/' . 'user_roles.tsv');
+
     $columns = [
-      SeederHelper::$name,
-      SeederHelper::$slug,
-      SeederHelper::$description,
-      SeederHelper::$active,
+      SeederHelper::getColumnDefinition('name', 'Name'),
+      SeederHelper::getColumnDefinition('slug', 'Slug'),
+      SeederHelper::getColumnDefinition('description', 'Description'),
+      SeederHelper::getColumnDefinition('active', 'Active'),
     ];
 
     if (count($model::all()) > 0) {
@@ -28,25 +29,10 @@ class UserRoleSeeder extends Seeder
       return;
     }
 
-    $fh = fopen($seeding_file_name, "r");
-    $line = fgets($fh);
-    $line = str_replace(array("\r", "\n"), '', $line);
-    $headers = preg_split("/[\t]/", $line);
+    $fh = SeederHelper::openSeedingFile($seeding_file_name);
 
-    // create array of indices for the column names
-    for ($i = 0; $i < count($columns); $i++) {
-      $column_name = $columns[$i]['column_name'];
-      $key = $columns[$i]['key'];
-
-      $index = array_search($key, $headers);
-      if ($index === false) {
-        echo "Key ({$key}) for column name ({$column_name}) is not found in the header.\n";
-        return;
-      }
-
-      $columns[$i]['lookup_index'] = $index;
-      // echo "name: {$name}, key: {$key}, type: {$type}, lookup_index: {$column['lookup_index']}\n";
-    }
+    // ['column_key' => index1, 'column_key' => index2, ...]
+    $columnIndices = SeederHelper::getColumnIndices($fh, $columns);
 
     // iterate over the rows in the file
     while (($line = fgets($fh)) !== false) {
@@ -56,25 +42,15 @@ class UserRoleSeeder extends Seeder
       $data = [];
       foreach ($columns as $column) {
         $column_name = $column['column_name'];
-        $column_type = $column['column_type'];
-        $lookup_index = $column['lookup_index'];
+        $lookup_index = $columnIndices[$column_name];
 
-        // echo "name: {$name}, lookup_index: {$lookup_index}\n";
+        if ($lookup_index === false) {
+          dd("Index not found for column name {$column_name}.\n");
+        }
 
         $value_in_record = $fields[$lookup_index];
 
-        $value_to_be_inserted = null;
-
-        if ($column_type === 'value') {
-          $value_to_be_inserted = $value_in_record;
-        } else if ($column_type === 'boolean') {
-          if ($value_in_record == 'TRUE' || $value_in_record == 1) {
-            $value_to_be_inserted = true;
-          } else {
-            $value_to_be_inserted = false;
-          }
-        }
-
+        $value_to_be_inserted = SeederHelper::getValueToBeInserted($column, $value_in_record);
 
         $data[$column_name] = $value_to_be_inserted;
       }

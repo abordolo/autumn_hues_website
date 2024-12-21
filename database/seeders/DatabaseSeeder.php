@@ -21,13 +21,5 @@ class DatabaseSeeder extends Seeder
       UserSeeder::class,
       ProductCategorySeeder::class,
     ]);
-
-    // User::factory()->create([
-    //   'user_role_id' => UserRole::where('name', 'admin')->id,
-    //   'firstname' => 'admin',
-    //   'lastname' => 'admin',
-    //   'email' => 'admin@autumnhues.com',
-    //   'password' => bcrypt('NajanuDei@2024'),
-    // ]);
   }
 }

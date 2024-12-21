@@ -18,56 +18,13 @@ class UserSeeder extends Seeder
     $model = User::class;
     $seeding_file_name = storage_path('database_seeding_files/' . 'users.tsv');
     $columns = [
-      [
-        'column_name' => 'user_role_id',
-        'key' => 'User Role',
-        'column_type' => 'relationship',
-        'reference_model' => UserRole::class,
-        'reference_column' => 'id',
-        'lookup_index' => null,
-      ],
-
-      [
-        'column_name' => 'firstname',
-        'key' => 'First Name',
-        'column_type' => 'value',
-        'lookup_index' => null,
-      ],
-
-      [
-        'column_name' => 'lastname',
-        'key' => 'Last Name',
-        'column_type' => 'value',
-        'lookup_index' => null,
-      ],
-
-      [
-        'column_name' => 'email',
-        'key' => 'Email',
-        'column_type' => 'value',
-        'lookup_index' => null,
-      ],
-
-      [
-        'column_name' => 'country_code',
-        'key' => 'Country Code',
-        'column_type' => 'value',
-        'lookup_index' => null,
-      ],
-
-      [
-        'column_name' => 'phone',
-        'key' => 'Phone',
-        'column_type' => 'value',
-        'lookup_index' => null,
-      ],
-
-      [
-        'column_name' => 'password',
-        'key' => 'Password',
-        'column_type' => 'password',
-        'lookup_index' => null,
-      ],
+      SeederHelper::getReferenceColumn(UserRole::class),
+      SeederHelper::$firstname,
+      SeederHelper::$lastname,
+      SeederHelper::$email,
+      SeederHelper::$country_code,
+      SeederHelper::$phone,
+      SeederHelper::$password,
     ];
 
     if (count($model::all()) > 0) {

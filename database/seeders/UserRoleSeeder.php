@@ -17,49 +17,10 @@ class UserRoleSeeder extends Seeder
     $model = UserRole::class;
     $seeding_file_name = storage_path('database_seeding_files/' . 'user_roles.tsv');
     $columns = [
-      [
-        'column_name' => 'name',
-        'key' => 'Name',
-        'column_type' => 'value',
-        'reference_model' => null,
-        'reference_column' => null,
-        // index of the record in a row
-        // to be filled
-        'lookup_index' => null,
-      ],
-
-      [
-        'column_name' => 'slug',
-        'key' => 'Slug',
-        'column_type' => 'value',
-        'reference_model' => null,
-        'reference_column' => null,
-        // index of the record in a row
-        // to be filled
-        'lookup_index' => null,
-      ],
-
-      [
-        'column_name' => 'description',
-        'key' => 'Description',
-        'column_type' => 'value',
-        'reference_model' => null,
-        'reference_column' => null,
-        // index of the record in a row
-        // to be filled
-        'lookup_index' => null,
-      ],
-
-      [
-        'column_name' => 'active',
-        'key' => 'Active',
-        'column_type' => 'boolean',
-        'reference_model' => null,
-        'reference_column' => null,
-        // index of the record in a row
-        // to be filled
-        'lookup_index' => null,
-      ],
+      SeederHelper::$name,
+      SeederHelper::$slug,
+      SeederHelper::$description,
+      SeederHelper::$active,
     ];
 
     if (count($model::all()) > 0) {

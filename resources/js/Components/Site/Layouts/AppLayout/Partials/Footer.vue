@@ -1,5 +1,5 @@
 <template>
-  <div>Admin Edit Form</div>
+  <div>Footer</div>
 </template>
 
 <script setup></script>

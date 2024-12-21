@@ -11,8 +11,8 @@
 </template>
 
 <script setup>
-import Sidebar from './Partials/Sidebar.vue';
-import Notification from '@/Components/App/Notification.vue';
+import Sidebar from './Partials/AdminSidebar.vue';
+import Notification from '@/Components/Site/Notification.vue';
 
 // function keyPressed(e) {
 //   if (e.ctrlKey && e.key === 'k') {

@@ -21,8 +21,8 @@
 
 <script setup>
 // imports
-import NavItem from './NavItem.vue';
-import { navItems } from '@/Components/App/Layouts/AdminLayout/AdminNavItems.js';
+import NavItem from './AdminNavItem.vue';
+import { navItems } from '@/Components/Site/Layouts/AdminLayout/AdminNavItems.js';
 
 // nav items
 </script>

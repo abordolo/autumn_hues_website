@@ -11,7 +11,8 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
 // layouts
-import AdminLayout from '@/Components/App/Layouts/AdminLayout/Index.vue';
+import AdminLayout from '@/Components/Site/Layouts/AdminLayout/Index.vue';
+import AppLayout from '@/Components/Site/Layouts/AppLayout/Index.vue';
 
 const pinia = createPinia();
 
@@ -25,6 +26,8 @@ createInertiaApp({
 
     if (name.startsWith('Admin/')) {
       page.default.layout = page.default.layout || AdminLayout;
+    } else {
+      page.default.layout = page.default.layout || AppLayout;
     }
 
     return page;

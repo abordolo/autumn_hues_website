@@ -13,7 +13,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
 
       screens: {
@@ -23,16 +23,16 @@ export default {
 
       colors: {
         primary: {
-          50: '#fef2f2',
-          100: '#fee2e2',
-          200: '#fecaca',
-          300: '#fca5a5',
-          400: '#f87171',
-          500: '#EF4444',
-          600: '#DC2626',
-          700: '#B91C1C',
-          800: '#991B1B',
-          900: '#7F1D1D',
+          50: '#fdf2e9',
+          100: '#fcd5b4',
+          200: '#fac880',
+          300: '#f8bb4b',
+          400: '#f5ad16',
+          500: '#D97706',
+          600: '#b66005',
+          700: '#934904',
+          800: '#703203',
+          900: '#4d1b02',
         },
 
         secondary: {

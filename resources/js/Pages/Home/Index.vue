@@ -1,9 +1,12 @@
 <template>
   <div>
-    <Section>
-      <Container>Home Page</Container>
-    </Section>
+    <Hero />
+    <ProductCategoryBar />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+// imports
+import Hero from './Partials/Hero.vue';
+import ProductCategoryBar from './Partials/ProductCategoryBar.vue';
+</script>

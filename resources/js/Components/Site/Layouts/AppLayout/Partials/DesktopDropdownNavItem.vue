@@ -18,7 +18,7 @@
     >
       <div
         v-show="showDropdown"
-        class="absolute z-10 pt-2"
+        class="absolute z-30 pt-2"
       >
         <div class="w-48 bg-white border rounded-md shadow-lg">
           <template

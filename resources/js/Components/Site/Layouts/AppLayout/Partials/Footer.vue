@@ -1,6 +1,6 @@
 <template>
   <Section class="text-gray-200">
-    <Container class="relative min-h-[280px] py-8">
+    <Container class="relative min-h-[280px] py-8 lg:py-12">
       <!-- background image -->
       <div class="absolute inset-0">
         <img
@@ -12,21 +12,25 @@
       <!-- background image -->
 
       <!-- contents -->
-      <div class="relative z-20 px-8">
-        <div class="space-y-8">
+      <div class="relative z-20 px-0 lg:px-8">
+        <div class="space-y-12 md:space-y-8">
           <!-- logo and menu items -->
-          <div class="flex items-start justify-between">
+          <div
+            class="flex flex-col items-start space-y-8 md:flex-row md:space-y-0 md:justify-between"
+          >
             <Logo />
 
             <!-- menu items -->
-            <div class="flex items-start space-x-16">
+            <div
+              class="flex flex-col space-y-6 md:flex-row md:space-x-16 md:space-y-0 lg:space-x-20"
+            >
               <template
                 v-for="(item, index) in items"
                 :key="`footer-item-${index}`"
               >
                 <!-- single block -->
                 <div class="space-y-2">
-                  <Medium class="font-bold">{{ item.heading }}</Medium>
+                  <Small class="font-bold">{{ item.heading }}</Small>
                   <!-- links -->
                   <div class="space-y-1">
                     <template
@@ -53,7 +57,9 @@
           <!-- logo and menu items -->
 
           <!-- communication and copyright -->
-          <div class="flex items-end justify-between">
+          <div
+            class="flex flex-col justify-between space-y-12 md:space-y-0 md:items-end md:flex-row"
+          >
             <!-- communication -->
             <div class="space-y-6">
               <template

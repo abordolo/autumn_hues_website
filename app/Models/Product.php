@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    /** @use HasFactory<\Database\Factories\ProductFactory> */
-    use HasFactory;
+  /** @use HasFactory<\Database\Factories\ProductFactory> */
+  use HasFactory;
+
+  // product skus
+  public function productSkus()
+  {
+    return $this->hasMany(ProductSku::class);
+  }
 }

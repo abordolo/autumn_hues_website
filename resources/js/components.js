@@ -41,6 +41,12 @@ import FormLabel from './Components/Site/Form/FormLabel.vue';
 // horizontal tab bar
 import HorizontalTabBar from '@/Components/Site/Tabs/HorizontalTabBar.vue';
 
+// page headings
+import PageHeading from '@/Components/Site/PageHeadings/PageHeading.vue';
+
+// animate on scroll
+import AnimateOnScroll from './Components/Site/AnimateOnScroll/AnimateOnScroll.vue';
+
 const components = [
   { name: 'Section', component: Section },
   { name: 'Container', component: Container },
@@ -83,6 +89,12 @@ const components = [
 
   // tabs
   { name: 'HorizontalTabBar', component: HorizontalTabBar },
+
+  // page headings
+  { name: 'PageHeading', component: PageHeading },
+
+  // animate on scroll
+  { name: 'AnimateOnScroll', component: AnimateOnScroll },
 ];
 
 export { components };

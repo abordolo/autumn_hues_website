@@ -10,7 +10,7 @@ import { computed } from 'vue';
 
 // props
 const props = defineProps({
-  colsCount: { type: Number, default: 6 },
+  colsCount: { type: Number, default: 4 },
 });
 
 // classes

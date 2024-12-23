@@ -2,7 +2,7 @@
   <div class="w-full h-full p-3 bg-white border rounded">
     <Medium class="mb-2 font-bold">{{ title }}</Medium>
 
-    <div class="max-h-[280px] overflow-auto">
+    <div class="max-h-[480px] overflow-auto">
       <ExtraSmall class="font-medium whitespace-pre">{{ data }}</ExtraSmall>
     </div>
   </div>

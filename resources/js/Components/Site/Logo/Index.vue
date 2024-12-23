@@ -1,11 +1,13 @@
 <template>
-  <div class="h-24">
-    <img
-      :src="logo"
-      alt="Logo"
-      class="object-contain h-full"
-    />
-  </div>
+  <InertiaLink href="/">
+    <div>
+      <img
+        :src="logo"
+        alt="Logo"
+        class="object-contain h-full"
+      />
+    </div>
+  </InertiaLink>
 </template>
 
 <script setup>

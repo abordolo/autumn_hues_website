@@ -2,7 +2,7 @@
   <Section class="text-gray-200">
     <Container class="relative min-h-[280px] py-8 lg:py-12">
       <!-- background image -->
-      <div class="absolute inset-0">
+      <div class="absolute inset-0 xl:px-4">
         <img
           src="/images/footer.png"
           alt=""

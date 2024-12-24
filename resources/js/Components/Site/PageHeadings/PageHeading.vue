@@ -2,7 +2,7 @@
   <Section>
     <Container class="relative min-h-[400px] text-white flex items-center">
       <!-- background image -->
-      <div class="absolute inset-0 z-10">
+      <div class="absolute inset-0 z-10 px-0">
         <img
           :src="background"
           alt=""

@@ -13,6 +13,12 @@
       :intro="productCategory.description"
       :background="productCategory.header_image"
     />
+
+    <Section class="my-16">
+      <Container>
+        <Heading4>Products</Heading4>
+      </Container>
+    </Section>
   </div>
 </template>
 
@@ -26,5 +32,5 @@ const props = defineProps({
 });
 
 // debug
-const debug = ref(true);
+const debug = ref(false);
 </script>

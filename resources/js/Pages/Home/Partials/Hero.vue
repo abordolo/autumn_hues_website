@@ -2,7 +2,7 @@
   <Section>
     <Container class="relative py-24 overflow-hidden text-center text-white">
       <!-- background image -->
-      <div class="absolute inset-0 z-10">
+      <div class="absolute inset-0 z-10 xl:px-4">
         <img
           src="/images/home/hero/bg.png"
           class="object-cover object-center w-full h-full"

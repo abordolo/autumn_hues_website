@@ -13,19 +13,6 @@ class AdminProductSkuController extends Controller
   {
     $productFilterString = 'Ear Ring 1';
 
-    // $productSkus = ProductSku::query()
-    //   ->select('id', 'name', 'product_id', 'product_category_id', 'price')
-    //   ->orderBy('name')
-    //   ->with([
-    //     'product' => function ($query) use ($productFilterString) {
-    //       $query->select('id', 'name');
-    //     },
-    //     'productCategory' => function ($query) {
-    //       $query->select('id', 'name');
-    //     },
-    //   ])
-    //   ->paginate();
-
     $productSkus = DB::table('product_skus')
       ->join(
         'products',
@@ -108,5 +95,23 @@ class AdminProductSkuController extends Controller
       'paginated' => true
     ];
     return Inertia::render('Admin/ProductSku/Index', $data);
+  }
+
+  public function show(ProductSku $productSku)
+  {
+    $data = [
+      'productSku' => $productSku,
+    ];
+
+    return Inertia::render('Admin/ProductSku/Show', $data);
+  }
+
+  public function Edit(ProductSku $productSku)
+  {
+    $data = [
+      'productSku' => $productSku,
+    ];
+
+    return Inertia::render('Admin/ProductSku/Edit', $data);
   }
 }

@@ -47,8 +47,11 @@ import PageHeading from '@/Components/Site/PageHeadings/PageHeading.vue';
 // animate on scroll
 import AnimateOnScroll from './Components/Site/AnimateOnScroll/AnimateOnScroll.vue';
 
-// background image
-import BackgroundImage from './Components/Site/BackgroundImage/Index.vue';
+// text blocks
+import HeadingBlock from './Components/Site/TextBlocks/HeadingBlock.vue';
+
+// logo
+import Logo from './Components/Site/Logo/Index.vue';
 
 const components = [
   { name: 'Section', component: Section },
@@ -99,8 +102,11 @@ const components = [
   // animate on scroll
   { name: 'AnimateOnScroll', component: AnimateOnScroll },
 
-  // background image
-  { name: 'BackgroundImage', component: BackgroundImage },
+  // text blocks
+  { name: 'HeadingBlock', component: HeadingBlock },
+
+  // logo
+  { name: 'Logo', component: Logo },
 ];
 
 export { components };

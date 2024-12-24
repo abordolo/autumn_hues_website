@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <Sidebar class="sticky top-0 shrink-0" />
+    <AdminSidebar class="sticky top-0 shrink-0" />
 
     <div class="flex-1 px-6 py-4 overflow-x-auto">
       <slot />
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import Sidebar from './Partials/AdminSidebar.vue';
+import AdminSidebar from './Partials/AdminSidebar.vue';
 import Notification from '@/Components/Site/Notification.vue';
 
 // function keyPressed(e) {

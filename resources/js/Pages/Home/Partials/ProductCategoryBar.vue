@@ -1,9 +1,7 @@
 <template>
   <Section>
-    <Container class="bg-amber-100 xl:bg-inherit">
-      <div
-        class="flex flex-wrap items-center justify-center gap-4 py-4 bg-amber-100"
-      >
+    <Container class="bg-amber-100">
+      <div class="flex flex-wrap items-center justify-center gap-4 py-4">
         <template
           v-for="productCategory in productCategories"
           :key="productCategory.id"

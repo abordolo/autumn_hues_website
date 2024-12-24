@@ -8,9 +8,14 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+// index
+Route::get('/product-categories', [
+  ProductCategoryController::class,
+  'index'
+])->name('product-categories.index');
 
-Route::prefix('admin')
-  ->name('admin.')
-  ->group(function () {
-    Route::resource('product-category', ProductCategoryController::class);
-  });
+// show
+Route::get('/product-categories/{productCategory:slug}', [
+  ProductCategoryController::class,
+  'index'
+])->name('product-categories.show');

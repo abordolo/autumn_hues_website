@@ -12,8 +12,8 @@ Route::get('/', [
   'index'
 ])->name('home.index');
 
-
+require __DIR__ . '/product_category.php';
 
 require __DIR__ . '/admin.php';
-require __DIR__ . '/product-categories.php';
+
 require __DIR__ . '/auth.php';

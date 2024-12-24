@@ -14,8 +14,6 @@
 </template>
 
 <script setup>
-// imports
-import Logo from '@/Components/Site/Logo/Index.vue';
 import DesktopNavigation from './DesktopNavigation.vue';
 import MobileNavigation from './MobileNavigation.vue';
 </script>

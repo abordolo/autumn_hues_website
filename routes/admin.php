@@ -1,15 +1,41 @@
 <?php
 
-use App\Http\Controllers\AdminHomePageController;
-use App\Http\Controllers\HomePageController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminProductCategoryController;
+use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminProductSkuController;
+use App\Http\Controllers\AdminProductSubCategoryController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/admin', [
-  AdminHomePageController::class,
+  AdminDashboardController::class,
   'index'
 ])->name('admin.index');
 
-require __DIR__ . '/product_category.php';
+// product categories
+Route::prefix('admin')
+  ->name('admin.')
+  ->group(function () {
+    Route::resource('product-categories', AdminProductCategoryController::class);
+  });
+
+// product sub categories
+Route::prefix('admin')
+  ->name('admin.')
+  ->group(function () {
+    Route::resource('product-sub-categories', AdminProductSubCategoryController::class);
+  });
+
+// products
+Route::prefix('admin')
+  ->name('admin.')
+  ->group(function () {
+    Route::resource('products', AdminProductController::class);
+  });
+
+// product skus
+Route::prefix('admin')
+  ->name('admin.')
+  ->group(function () {
+    Route::resource('product-skus', AdminProductSkuController::class);
+  });

@@ -1,10 +1,10 @@
 <template>
-  <div class="h-[100vh] overflow-auto bg-gray-50 w-[320px]">
-    <!-- heading -->
-    <div class="px-4 py-6 bg-gray-100">
-      <p class="text-lg font-bold">Admin Dashboard</p>
+  <div class="h-[100vh] overflow-auto bg-gray-100 w-[320px]">
+    <!-- logo -->
+    <div class="px-4 pt-4">
+      <Logo />
     </div>
-    <!-- heading -->
+    <!-- logo -->
 
     <!-- menu item container -->
     <div class="mt-4">

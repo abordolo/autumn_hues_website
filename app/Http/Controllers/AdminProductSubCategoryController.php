@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class AdminHomePageController extends Controller
+class AdminProductSubCategoryController extends Controller
 {
   public function index()
   {
-    return Inertia::render('Admin/Home/Index');
+    return Inertia::render('Admin/ProductSubCategory/Index');
   }
 }

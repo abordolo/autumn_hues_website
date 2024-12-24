@@ -1,6 +1,6 @@
 <template>
   <Section>
-    <Container class="xl:bg-inherit bg-amber-100">
+    <Container class="bg-amber-100 xl:bg-inherit">
       <div
         class="flex flex-wrap items-center justify-center gap-4 py-4 bg-amber-100"
       >

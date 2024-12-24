@@ -1,24 +1,19 @@
 <template>
   <Section>
-    <Container class="relative py-24 overflow-hidden text-center text-white">
-      <!-- background image -->
-      <div class="absolute inset-0 z-10 xl:px-4">
-        <img
-          src="/images/home/hero/bg.png"
-          class="object-cover object-center w-full h-full"
-        />
-      </div>
-      <!-- background image -->
+    <Container>
+      <div class="relative py-24 text-center text-white">
+        <BackgroundImage image="/images/home/hero/bg.png" />
 
-      <div class="relative z-20 max-w-3xl mx-auto">
-        <div class="inline-flex px-3 py-2 mx-auto bg-primary-500">
-          <PreHeading>{{ preHeading }}</PreHeading>
-        </div>
-        <DisplayHeading class="mt-6">{{ heading }}</DisplayHeading>
-        <Intro class="mt-6">{{ intro }}</Intro>
+        <div class="relative z-20 max-w-3xl mx-auto">
+          <div class="inline-flex px-3 py-2 mx-auto bg-primary-500">
+            <PreHeading>{{ preHeading }}</PreHeading>
+          </div>
+          <DisplayHeading class="mt-6">{{ heading }}</DisplayHeading>
+          <Intro class="mt-6">{{ intro }}</Intro>
 
-        <div class="max-w-2xl mx-auto mt-12">
-          <SearchForm />
+          <div class="max-w-2xl mx-auto mt-12">
+            <SearchForm />
+          </div>
         </div>
       </div>
     </Container>

@@ -47,6 +47,9 @@ import PageHeading from '@/Components/Site/PageHeadings/PageHeading.vue';
 // animate on scroll
 import AnimateOnScroll from './Components/Site/AnimateOnScroll/AnimateOnScroll.vue';
 
+// background image
+import BackgroundImage from './Components/Site/BackgroundImage/Index.vue';
+
 const components = [
   { name: 'Section', component: Section },
   { name: 'Container', component: Container },
@@ -95,6 +98,9 @@ const components = [
 
   // animate on scroll
   { name: 'AnimateOnScroll', component: AnimateOnScroll },
+
+  // background image
+  { name: 'BackgroundImage', component: BackgroundImage },
 ];
 
 export { components };

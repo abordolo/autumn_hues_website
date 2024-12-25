@@ -1,8 +1,20 @@
 <template>
   <div>
+    <!-- meta -->
+    <InertiaHead>
+      <title>Home</title>
+      <meta
+        name="description"
+        content="Home page"
+      />
+    </InertiaHead>
+    <!-- meta -->
+
+    <!-- contents -->
     <Hero />
     <ProductCategoryBar :productCategories="productCategories" />
     <AboutUsPreview />
+    <!-- contents -->
   </div>
 </template>
 

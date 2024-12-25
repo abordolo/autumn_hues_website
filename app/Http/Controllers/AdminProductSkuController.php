@@ -99,8 +99,71 @@ class AdminProductSkuController extends Controller
 
   public function show(ProductSku $productSku)
   {
+    $sections = [
+      [
+        'title' => 'Product SKU Details',
+        'type' => 'block',
+        'fields' => [
+          [
+            'title' => 'ID',
+            'type' => 'string',
+            'value' => $productSku->id,
+          ],
+
+          [
+            'title' => 'Name',
+            'type' => 'string',
+            'value' => $productSku->name,
+          ],
+
+          [
+            'title' => 'Price',
+            'type' => 'string',
+            'value' => $productSku->price,
+          ],
+
+          [
+            'title' => 'Stock',
+            'type' => 'string',
+            'value' => $productSku->stock,
+          ],
+
+          [
+            'title' => 'Active',
+            'type' => 'string',
+            'value' => $productSku->active ? 'Yes' : 'No',
+          ],
+        ],
+      ],
+
+      [
+        'title' => 'Product SKU Description',
+        'type' => 'text',
+      ],
+
+      [
+        'title' => 'Related To',
+        'type' => 'block',
+        'fields' => [
+          [
+            'title' => 'Product Category',
+            'type' => 'string',
+            'value' => $productSku->productCategory->name,
+          ],
+
+          [
+            'title' => 'Product',
+            'type' => 'string',
+            'value' => $productSku->product->name,
+          ],
+        ],
+      ],
+    ];
+
     $data = [
-      'productSku' => $productSku,
+      'productSku' => $productSku->only('id'),
+      'heading' => 'Product SKU Details',
+      'sections' => $sections,
     ];
 
     return Inertia::render('Admin/ProductSku/Show', $data);
@@ -109,9 +172,18 @@ class AdminProductSkuController extends Controller
   public function Edit(ProductSku $productSku)
   {
     $data = [
+      'heading' => 'Edit Product SKU',
       'productSku' => $productSku,
     ];
 
     return Inertia::render('Admin/ProductSku/Edit', $data);
+  }
+
+  public function update(Request $request, ProductSku $productSku)
+  {
+    dd('product sku update');
+    $productSku->update($request->all());
+
+    return redirect()->route('admin.product_sku.show', $productSku);
   }
 }

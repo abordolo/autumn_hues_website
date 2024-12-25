@@ -12,7 +12,7 @@
       <!-- background image -->
 
       <!-- contents -->
-      <div class="relative z-20">
+      <div class="relative">
         <div class="space-y-12 md:space-y-8">
           <!-- logo and menu items -->
           <div

@@ -22,9 +22,6 @@
 </template>
 
 <script setup>
-// imports
-import AdminIndexPage from '@/Pages/Admin/Partials/AdminIndexPage/Index.vue';
-
 // props
 const props = defineProps({
   productSkus: { type: [Array, Object], required: true },

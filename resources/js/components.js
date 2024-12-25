@@ -45,13 +45,23 @@ import HorizontalTabBar from '@/Components/Site/Tabs/HorizontalTabBar.vue';
 import PageHeading from '@/Components/Site/PageHeadings/PageHeading.vue';
 
 // animate on scroll
-import AnimateOnScroll from './Components/Site/AnimateOnScroll/AnimateOnScroll.vue';
+import AnimateOnScroll from '@/Components/Site/AnimateOnScroll/AnimateOnScroll.vue';
 
 // text blocks
-import HeadingBlock from './Components/Site/TextBlocks/HeadingBlock.vue';
+import HeadingBlock from '@/Components/Site/TextBlocks/HeadingBlock.vue';
 
 // logo
-import Logo from './Components/Site/Logo/Index.vue';
+import Logo from '@/Components/Site/Logo/Index.vue';
+
+// admin pages
+import AdminIndexPage from '@/Components/Site/Admin/AdminIndexPage/Index.vue';
+import AdminShowPage from '@/Components/Site/Admin/AdminShowPage/Index.vue';
+
+// generic form
+import GenericForm from '@/Components/Site/Form/GenericForm/Index.vue';
+
+// popup
+import Popup from '@/Components/Site/Popup/Index.vue';
 
 const components = [
   { name: 'Section', component: Section },
@@ -107,6 +117,16 @@ const components = [
 
   // logo
   { name: 'Logo', component: Logo },
+
+  // admin pages
+  { name: 'AdminIndexPage', component: AdminIndexPage },
+  { name: 'AdminShowPage', component: AdminShowPage },
+
+  // generic form
+  { name: 'GenericForm', component: GenericForm },
+
+  // popup
+  { name: 'Popup', component: Popup },
 ];
 
 export { components };

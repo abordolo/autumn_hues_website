@@ -2,10 +2,16 @@
 
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestPageController;
 use App\Models\ProductCategory;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+
+
+Route::get('/test', [
+  TestPageController::class,
+  'index'
+])->name('test.index');
 
 Route::get('/', [
   HomePageController::class,

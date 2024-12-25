@@ -13,7 +13,7 @@
 
 <script setup>
 // imports
-import AdminDataTable from '@/Pages/Admin/Partials/AdminDataTable/Index.vue';
+import AdminDataTable from '@/Components/Site/Admin/AdminDataTable/Index.vue';
 import { router } from '@inertiajs/vue3';
 
 // props

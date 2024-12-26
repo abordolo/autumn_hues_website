@@ -19,4 +19,10 @@ class ProductSku extends Model
   {
     return $this->belongsTo(ProductCategory::class);
   }
+
+  // product sub category
+  public function productSubCategory()
+  {
+    return $this->belongsTo(ProductSubCategory::class);
+  }
 }

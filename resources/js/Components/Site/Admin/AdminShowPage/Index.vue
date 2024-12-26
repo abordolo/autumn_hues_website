@@ -1,19 +1,30 @@
 <template>
-  <div>
+  <div class="mb-16">
+    <!-- page heading -->
     <Heading1>{{ heading }}</Heading1>
+    <!-- page heading -->
 
     <!-- sections -->
-    <div class="mt-10 space-y-10">
+    <div class="mt-10 space-y-12">
       <template
         v-for="section in sections"
         :key="section.title"
       >
-        <!-- block section -->
-        <div v-if="section.type == 'block'">
-          <Heading5 class="mb-4 text-gray-500">{{ section.title }}</Heading5>
+        <!-- single section -->
+        <div>
+          <!-- section heading -->
+          <Heading5 class="mb-5 text-gray-500">
+            {{ section.title }}
+          </Heading5>
+          <!-- section heading -->
 
           <!-- fields -->
-          <div class="grid grid-cols-4 gap-6">
+          <div
+            :class="{
+              'grid grid-cols-4 gap-6': section.type == 'block',
+              'space-y-6 w-1/2 pr-3': section.type == 'text',
+            }"
+          >
             <template
               v-for="field in section.fields"
               :key="field.title"
@@ -28,11 +39,7 @@
           </div>
           <!-- fields -->
         </div>
-        <!-- block section -->
-
-        <!-- text section -->
-        <div v-if="section.type == 'text'"></div>
-        <!-- text section -->
+        <!-- single section -->
       </template>
     </div>
     <!-- sections -->

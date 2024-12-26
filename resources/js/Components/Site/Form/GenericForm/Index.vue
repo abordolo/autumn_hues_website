@@ -14,13 +14,25 @@
           :key="field.id"
         >
           <!-- single field -->
-          <FormInput
-            v-if="field.type === 'text' || field.type === 'textarea'"
-            v-model="form[field.parameter]"
-            :label="field.label"
-            :textarea="field.type === 'textarea'"
-            :error="form.errors[field.parameter]"
-          />
+          <div>
+            <!-- text or textarea -->
+            <FormInput
+              v-if="field.type === 'text' || field.type === 'textarea'"
+              v-model="form[field.parameter]"
+              :label="field.label"
+              :textarea="field.type === 'textarea'"
+              :error="form.errors[field.parameter]"
+            />
+            <!-- text or textarea -->
+
+            <!-- boolean -->
+            <FormToggle
+              v-if="field.type === 'boolean'"
+              v-model="form[field.parameter]"
+              :label="field.label"
+            />
+            <!-- boolean -->
+          </div>
           <!-- single field -->
         </template>
       </div>
@@ -103,6 +115,6 @@ const submit = () => {
     },
   };
 
-  form.submit(props.submissionMethod, props.submitUrl);
+  form.submit(props.submissionMethod, props.submitUrl, options);
 };
 </script>

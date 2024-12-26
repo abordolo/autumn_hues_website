@@ -152,6 +152,14 @@ class AdminProductSkuController extends Controller
               'label' => 'Stock',
               'type' => 'string',
               'value' => $productSku->stock,
+            ],
+
+            'edit' => [
+              'label' => 'Stock',
+              'type' => 'text',
+              'parameter' => 'stock',
+              'value' => $productSku->stock,
+              'placeholder' => 'Enter product sku stock',
             ]
           ],
 
@@ -160,6 +168,14 @@ class AdminProductSkuController extends Controller
               'label' => 'Active',
               'type' => 'string',
               'value' => $productSku->active ? 'Yes' : 'No',
+            ],
+
+            'edit' => [
+              'label' => 'Active',
+              'type' => 'boolean',
+              'parameter' => 'active',
+              'value' => $productSku->active ? true : false,
+              'placeholder' => null,
             ]
           ],
         ],
@@ -174,6 +190,14 @@ class AdminProductSkuController extends Controller
               'label' => 'Description',
               'type' => 'string',
               'value' => $productSku->description,
+            ],
+
+            'edit' => [
+              'label' => 'Description',
+              'type' => 'textarea',
+              'parameter' => 'description',
+              'value' => $productSku->description,
+              'placeholder' => 'Enter product sku description',
             ]
           ],
         ]
@@ -183,11 +207,37 @@ class AdminProductSkuController extends Controller
         'title' => 'Related To',
         'type' => 'block',
         'fields' => [
+          // product category
           [
             'show' => [
               'label' => 'Product Category',
               'type' => 'string',
               'value' => $productSku->productCategory->name,
+            ],
+
+            'edit' => [
+              'label' => 'Product Category',
+              'type' => 'select',
+              'parameter' => 'product_category',
+              'value' => $productSku->description,
+              'placeholder' => 'Select product category',
+            ]
+          ],
+
+          // product sub category
+          [
+            'show' => [
+              'label' => 'Product Sub Category',
+              'type' => 'string',
+              'value' => $productSku->productSubCategory->name,
+            ],
+
+            'edit' => [
+              'label' => 'Product Sub Category',
+              'type' => 'select',
+              'parameter' => 'product_sub_category',
+              'value' => $productSku->description,
+              'placeholder' => 'Select product sub category',
             ]
           ],
 
@@ -196,6 +246,14 @@ class AdminProductSkuController extends Controller
               'label' => 'Product',
               'type' => 'string',
               'value' => $productSku->product->name,
+            ],
+
+            'edit' => [
+              'label' => 'Product',
+              'type' => 'select',
+              'parameter' => 'product',
+              'value' => $productSku->description,
+              'placeholder' => 'Select product',
             ]
           ]
         ],
@@ -224,9 +282,86 @@ class AdminProductSkuController extends Controller
 
   public function update(Request $request, ProductSku $productSku)
   {
-    dd('product sku update');
-    $productSku->update($request->all());
+    $validated = $request->validate([
+      'product_category_id' => [
+        'nullable',
+        'exists:product_categories,id',
+      ],
 
-    return redirect()->route('admin.product_sku.show', $productSku);
+      'product_sub_category_id' => [
+        'nullable',
+        'exists:product_sub_categories,id',
+      ],
+
+      'product_id' => [
+        'nullable',
+        'exists:products,id',
+      ],
+
+      'name' => [
+        'nullable',
+        'string',
+        'min:3',
+        'max:255',
+        'unique:product_skus,name' . $productSku->name,
+      ],
+
+      'description' => [
+        'nullable',
+        'string',
+        'max:255',
+      ],
+
+      'price' => [
+        'nullable',
+        'numeric',
+      ],
+
+      'stock' => [
+        'nullable',
+        'numeric',
+      ],
+
+      'active' => [
+        'nullable',
+        'boolean',
+      ],
+    ]);
+
+    if (isset($validated['product_category_id'])) {
+      $productSku->product_category_id = $validated['product_category_id'];
+    }
+
+    if (isset($validated['product_sub_category_id'])) {
+      $productSku->product_sub_category_id = $validated['product_sub_category_id'];
+    }
+
+    if (isset($validated['product_id'])) {
+      $productSku->product_id = $validated['product_id'];
+    }
+
+    if (isset($validated['name'])) {
+      $productSku->name = $validated['name'];
+    }
+
+    if (isset($validated['description'])) {
+      $productSku->description = $validated['description'];
+    }
+
+    if (isset($validated['price'])) {
+      $productSku->price = $validated['price'];
+    }
+
+    if (isset($validated['stock'])) {
+      $productSku->stock = $validated['stock'];
+    }
+
+    if (isset($validated['active'])) {
+      $productSku->active = $validated['active'];
+    }
+
+    $productSku->save();
+
+    // return redirect()->route('admin.product_sku.show', $productSku);
   }
 }

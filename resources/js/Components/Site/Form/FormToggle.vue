@@ -35,7 +35,7 @@
 <script setup>
 // props
 const props = defineProps({
-  modelValue: { type: Boolean, default: false },
+  modelValue: { type: Boolean, required: false },
   label: { type: String, required: true },
 });
 

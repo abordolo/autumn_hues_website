@@ -1,5 +1,5 @@
 <template>
-  <div class="relative p-4 bg-gray-100">
+  <div class="relative p-4 bg-gray-100 border">
     <!-- edit button -->
     <div
       v-if="field.edit"
@@ -35,6 +35,8 @@
         :submitUrl="updateRoute"
         submissionMethod="put"
         @secondaryButtonClicked="showForm = false"
+        @success="success"
+        @error="error"
       />
     </Popup>
     <!-- popup form -->
@@ -43,6 +45,7 @@
 
 <script setup>
 // imports
+import { showSuccessNotification } from '@/Helpers/NotificationHelpers';
 import { PencilIcon } from '@heroicons/vue/24/outline';
 import { ref, computed } from 'vue';
 
@@ -85,4 +88,15 @@ const formFields = computed(() => {
     },
   ];
 });
+
+// success
+const success = () => {
+  showForm.value = false;
+  showSuccessNotification('Record updated successfully');
+};
+
+// error
+const error = () => {
+  showWarningNotification('There was an error while updating the record');
+};
 </script>

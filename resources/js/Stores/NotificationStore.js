@@ -8,6 +8,7 @@ export const useNotificationStore = defineStore('notificationStore', {
     message: null,
     type: null,
     timeout: null,
+    showMessageFor: 5000,
   }),
 
   // getters: {
@@ -17,16 +18,28 @@ export const useNotificationStore = defineStore('notificationStore', {
   actions: {
     showNotification(message, type = 'success') {
       if (this.timeout) {
-        this.$reset();
-        clearTimeout(this.timeout);
-      }
+        this.hideNotification();
 
+        // set parameters after the notification is hidden
+        setTimeout(() => {
+          this.setParameters(message, type);
+        }, 300);
+      } else {
+        this.setParameters(message, type);
+      }
+    },
+
+    hideNotification() {
+      if (this.timeout) clearTimeout(this.timeout);
+      this.$reset();
+    },
+
+    setParameters(message, type) {
       this.message = message;
       this.type = type;
-
       this.timeout = setTimeout(() => {
         this.$reset();
-      }, 3000);
+      }, this.showMessageFor);
     },
   },
 });

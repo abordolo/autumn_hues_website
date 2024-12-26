@@ -58,20 +58,21 @@
 // imports
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { showWarningNotification } from '@/Helpers/NotificationHelpers';
 
 // props
 const props = defineProps({
   // each object of fields should contain the following parameters
   // label, type, parameter, value, placeholder
-  fields: { type: Array, required: true },
-  primaryButtonText: { type: String, required: true },
+  fields: { type: Array, required: [] },
+  primaryButtonText: { type: String, default: 'Update' },
   secondaryButtonText: { type: String, required: false },
-  submitUrl: { type: String, required: true },
-  submissionMethod: { type: String, required: true },
+  submitUrl: { type: String, default: '#' },
+  submissionMethod: { type: String, default: 'post' },
 });
 
 // debug
-const debug = ref(true);
+const debug = ref(false);
 
 // emits
 const emits = defineEmits(['success', 'error', 'secondaryButtonClicked']);
@@ -87,7 +88,10 @@ const form = useForm(formParameters);
 
 // methods
 const submit = () => {
-  console.log('Submitting to url:', props.submitUrl);
+  if (!form.isDirty) {
+    showWarningNotification('No changes detected');
+    return;
+  }
 
   const options = {
     preserveScroll: true,

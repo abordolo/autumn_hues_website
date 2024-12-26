@@ -10,6 +10,5 @@
 
 <script setup>
 // imports
-import Navigation from './Partials/Navigation.vue';
 import Footer from './Partials/Footer.vue';
 </script>

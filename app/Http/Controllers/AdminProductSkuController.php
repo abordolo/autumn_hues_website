@@ -104,34 +104,63 @@ class AdminProductSkuController extends Controller
         'title' => 'Product SKU Details',
         'type' => 'block',
         'fields' => [
+          // id
           [
-            'title' => 'ID',
-            'type' => 'string',
-            'value' => $productSku->id,
+            'show' => [
+              'label' => 'ID',
+              'type' => 'string',
+              'value' => $productSku->id,
+            ],
+          ],
+
+          // name
+          [
+            'show' => [
+              'label' => 'Name',
+              'type' => 'string',
+              'value' => $productSku->name,
+            ],
+
+            'edit' => [
+              'label' => 'Name',
+              'type' => 'text',
+              'parameter' => 'name',
+              'value' => $productSku->name,
+              'placeholder' => 'Enter product sku name',
+            ]
+          ],
+
+          // price
+          [
+            'show' => [
+              'label' => 'Price',
+              'type' => 'string',
+              'value' => $productSku->price,
+            ],
+
+            'edit' => [
+              'label' => 'Price',
+              'type' => 'text',
+              'parameter' => 'price',
+              'value' => $productSku->price,
+              'placeholder' => 'Enter product sku price',
+            ]
           ],
 
           [
-            'title' => 'Name',
-            'type' => 'string',
-            'value' => $productSku->name,
+            'show' => [
+              'label' => 'Stock',
+              'type' => 'string',
+              'value' => $productSku->stock,
+            ]
           ],
 
           [
-            'title' => 'Price',
-            'type' => 'string',
-            'value' => $productSku->price,
-          ],
-
-          [
-            'title' => 'Stock',
-            'type' => 'string',
-            'value' => $productSku->stock,
-          ],
-
-          [
-            'title' => 'Active',
-            'type' => 'string',
-            'value' => $productSku->active ? 'Yes' : 'No',
+            'show' => [
+              'label' => 'Active',
+              'type' => 'string',
+              'value' => $productSku->active ? 'Yes' : 'No',
+            ]
           ],
         ],
       ],
@@ -139,6 +168,15 @@ class AdminProductSkuController extends Controller
       [
         'title' => 'Product SKU Description',
         'type' => 'text',
+        'fields' => [
+          [
+            'show' => [
+              'label' => 'Description',
+              'type' => 'string',
+              'value' => $productSku->description,
+            ]
+          ],
+        ]
       ],
 
       [
@@ -146,16 +184,20 @@ class AdminProductSkuController extends Controller
         'type' => 'block',
         'fields' => [
           [
-            'title' => 'Product Category',
-            'type' => 'string',
-            'value' => $productSku->productCategory->name,
+            'show' => [
+              'label' => 'Product Category',
+              'type' => 'string',
+              'value' => $productSku->productCategory->name,
+            ]
           ],
 
           [
-            'title' => 'Product',
-            'type' => 'string',
-            'value' => $productSku->product->name,
-          ],
+            'show' => [
+              'label' => 'Product',
+              'type' => 'string',
+              'value' => $productSku->product->name,
+            ]
+          ]
         ],
       ],
     ];
@@ -164,6 +206,7 @@ class AdminProductSkuController extends Controller
       'productSku' => $productSku->only('id'),
       'heading' => 'Product SKU Details',
       'sections' => $sections,
+      'updateRoute' => route('admin.product-skus.update', $productSku),
     ];
 
     return Inertia::render('Admin/ProductSku/Show', $data);

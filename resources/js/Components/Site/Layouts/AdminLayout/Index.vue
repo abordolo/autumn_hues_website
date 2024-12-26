@@ -12,7 +12,6 @@
 
 <script setup>
 import AdminSidebar from './Partials/AdminSidebar.vue';
-import Notification from '@/Components/Site/Notification.vue';
 
 // function keyPressed(e) {
 //   if (e.ctrlKey && e.key === 'k') {

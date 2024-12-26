@@ -63,6 +63,9 @@ import GenericForm from '@/Components/Site/Form/GenericForm/Index.vue';
 // popup
 import Popup from '@/Components/Site/Popup/Index.vue';
 
+// notification
+import Notification from '@/Components/Site/Notification/Index.vue';
+
 const components = [
   { name: 'Section', component: Section },
   { name: 'Container', component: Container },
@@ -127,6 +130,9 @@ const components = [
 
   // popup
   { name: 'Popup', component: Popup },
+
+  // notification
+  { name: 'Notification', component: Notification },
 ];
 
 export { components };

@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 z-10 grid place-items-center">
+  <div class="fixed inset-0 z-10 grid p-6 place-items-center">
     <!-- screen -->
     <div
       class="fixed inset-0 z-20 bg-black/60"
@@ -9,11 +9,11 @@
 
     <!-- contents -->
     <Transition
-      enter-from-class="-translate-y-2 opacity-0"
+      enter-from-class="-translate-y-4 opacity-0"
       enter-active-class="transition duration-300"
       appear
     >
-      <div class="z-20 p-8 bg-white">
+      <div class="z-20 w-full max-w-4xl p-8 bg-white">
         <slot />
       </div>
     </Transition>
@@ -23,7 +23,7 @@
 
 <script setup>
 // imports
-import { onUnmounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 
 // props
 const props = defineProps({});
@@ -31,13 +31,16 @@ const props = defineProps({});
 // emits
 const emits = defineEmits(['close']);
 
-document.body.style.overflow = 'hidden';
-
 // close
 const close = () => {
   document.body.style.overflow = 'auto';
   emits('close');
 };
+
+// on mounted
+onMounted(() => {
+  document.body.style.overflow = 'hidden';
+});
 
 // on unmounted
 onUnmounted(() => {

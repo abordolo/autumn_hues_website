@@ -18,6 +18,8 @@ const pinia = createPinia();
 
 const appName = import.meta.env.VITE_APP_NAME || 'Autumn Hues';
 
+const debug = true;
+
 createInertiaApp({
   title: (title) => `${title} - ${appName}`,
   resolve: (name) => {

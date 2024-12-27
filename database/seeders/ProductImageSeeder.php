@@ -68,17 +68,11 @@ class ProductImageSeeder extends Seeder
 
       $original_path = $data['path'];
 
-      for ($i = 0; $i < 5; $i++) {
+      for ($i = 0; $i < 4; $i++) {
         $random_number = rand(10, 100);
-        print ('random_number: ' . $random_number . "\n");
         $data['path'] = str_replace('random=N', 'random=' . $random_number, $original_path);
         $model::create($data);
       }
-
-      $model::create($data);
-      $model::create($data);
-      $model::create($data);
-      $model::create($data);
     }
 
     echo "{$table_name} table is populated successfully.\n";

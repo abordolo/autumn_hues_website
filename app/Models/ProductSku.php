@@ -25,4 +25,9 @@ class ProductSku extends Model
   {
     return $this->belongsTo(ProductSubCategory::class);
   }
+
+  public function images()
+  {
+    return $this->hasMany(ProductImage::class, 'product_sku_id');
+  }
 }

@@ -41,6 +41,10 @@
         </div>
         <!-- single section -->
       </template>
+
+      <!-- images -->
+      <AdminShowImages :images="images" />
+      <!-- images -->
     </div>
     <!-- sections -->
   </div>
@@ -50,12 +54,14 @@
 // imports
 import { router } from '@inertiajs/vue3';
 import AdminShowSingleField from './Partials/AdminShowSingleField.vue';
+import AdminShowImages from './Partials/AdminShowImages.vue';
 
 // props
 const props = defineProps({
   data: { type: Object, required: true },
   heading: { type: String, required: true },
   sections: { type: Array, required: true },
+  images: { type: Array, default: [] },
   updateRoute: { type: String, required: true },
 });
 

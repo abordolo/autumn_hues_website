@@ -1,2 +1,10 @@
 TODO:
+----------------------------------------
 1. Implement pagination for AdminIndexPage component
+
+Code Snippets:
+----------------------------------------
+https://stackoverflow.com/questions/65535729/all-inertia-requests-must-receive-a-valid-inertia-response-however-a-plain-json
+return Redirect::back()->with([
+  'data' => 'Something you want to pass to front-end',
+])

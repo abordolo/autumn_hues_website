@@ -32,6 +32,16 @@
               :label="field.label"
             />
             <!-- boolean -->
+
+            <!-- select -->
+            <FormSelect
+              v-if="field.type === 'select'"
+              v-model="form[field.parameter]"
+              :label="field.label"
+              :options="field.options"
+              :error="form.errors[field.parameter]"
+            />
+            <!-- select -->
           </div>
           <!-- single field -->
         </template>
@@ -68,7 +78,7 @@
 
 <script setup>
 // imports
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { showWarningNotification } from '@/Helpers/NotificationHelpers';
 
@@ -84,10 +94,15 @@ const props = defineProps({
 });
 
 // debug
-const debug = ref(false);
+const debug = ref(true);
 
 // emits
-const emits = defineEmits(['success', 'error', 'secondaryButtonClicked']);
+const emits = defineEmits([
+  'success',
+  'warning',
+  'error',
+  'secondaryButtonClicked',
+]);
 
 // form parameters
 let formParameters = {};
@@ -108,7 +123,12 @@ const submit = () => {
   const options = {
     preserveScroll: true,
     onSuccess: () => {
-      emits('success');
+      if (usePage().props.flashData?.warning) {
+        emits('warning');
+        showWarningNotification(usePage().props.flashData.warning);
+      } else {
+        emits('success');
+      }
     },
     onError: () => {
       emits('error');

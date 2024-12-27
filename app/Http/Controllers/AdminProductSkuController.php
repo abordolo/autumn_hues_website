@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\ProductSku;
+use App\Models\ProductSubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
 class AdminProductSkuController extends Controller
@@ -99,7 +103,37 @@ class AdminProductSkuController extends Controller
 
   public function show(ProductSku $productSku)
   {
+
+    // product categories for dropdown
+    $productCategories = ProductCategory::query()
+      ->where('active', true)
+      ->orderBy('name')
+      ->get([
+        'id',
+        'name as label'
+      ]);
+
+    // product sub categories for dropdown
+    $productSubCategories = ProductSubCategory::query()
+      ->where('active', true)
+      ->orderBy('name')
+      ->get([
+        'id',
+        'name as label'
+      ]);
+
+    // products for dropdown
+    $products = Product::query()
+      ->where('active', true)
+      ->orderBy('name')
+      ->get([
+        'id',
+        'name as label'
+      ]);
+
+
     $sections = [
+      // block section
       [
         'title' => 'Product SKU Details',
         'type' => 'block',
@@ -147,6 +181,7 @@ class AdminProductSkuController extends Controller
             ]
           ],
 
+          // stock
           [
             'show' => [
               'label' => 'Stock',
@@ -163,6 +198,7 @@ class AdminProductSkuController extends Controller
             ]
           ],
 
+          // active
           [
             'show' => [
               'label' => 'Active',
@@ -181,6 +217,7 @@ class AdminProductSkuController extends Controller
         ],
       ],
 
+      // description section
       [
         'title' => 'Product SKU Description',
         'type' => 'text',
@@ -203,6 +240,7 @@ class AdminProductSkuController extends Controller
         ]
       ],
 
+      // related to section
       [
         'title' => 'Related To',
         'type' => 'block',
@@ -219,7 +257,11 @@ class AdminProductSkuController extends Controller
               'label' => 'Product Category',
               'type' => 'select',
               'parameter' => 'product_category',
-              'value' => $productSku->description,
+              'value' => [
+                'id' => $productSku->productCategory->id,
+                'label' => $productSku->productCategory->name,
+              ],
+              'options' => $productCategories,
               'placeholder' => 'Select product category',
             ]
           ],
@@ -236,11 +278,16 @@ class AdminProductSkuController extends Controller
               'label' => 'Product Sub Category',
               'type' => 'select',
               'parameter' => 'product_sub_category',
-              'value' => $productSku->description,
+              'value' => [
+                'id' => $productSku->productSubCategory->id,
+                'label' => $productSku->productSubCategory->name,
+              ],
+              'options' => $productSubCategories,
               'placeholder' => 'Select product sub category',
             ]
           ],
 
+          // product
           [
             'show' => [
               'label' => 'Product',
@@ -252,18 +299,31 @@ class AdminProductSkuController extends Controller
               'label' => 'Product',
               'type' => 'select',
               'parameter' => 'product',
-              'value' => $productSku->description,
+              'value' => [
+                'id' => $productSku->product->id,
+                'label' => $productSku->product->name,
+              ],
+              'options' => $products,
               'placeholder' => 'Select product',
             ]
           ]
         ],
       ],
+      // related to section
     ];
+
+    $images = $productSku->images->map(function ($image) {
+      return [
+        'id' => $image->id,
+        'path' => $image->path,
+      ];
+    });
 
     $data = [
       'productSku' => $productSku->only('id'),
       'heading' => 'Product SKU Details',
       'sections' => $sections,
+      'images' => $images,
       'updateRoute' => route('admin.product-skus.update', $productSku),
     ];
 
@@ -283,14 +343,31 @@ class AdminProductSkuController extends Controller
   public function update(Request $request, ProductSku $productSku)
   {
     $validated = $request->validate([
-      'product_category_id' => [
+      'product_category' => [
+        'nullable',
+      ],
+
+      'product_category.id' => [
         'nullable',
         'exists:product_categories,id',
       ],
 
-      'product_sub_category_id' => [
+      'product_sub_category' => [
+        'nullable',
+      ],
+
+      'product_sub_category.id' => [
         'nullable',
         'exists:product_sub_categories,id',
+      ],
+
+      'product' => [
+        'nullable',
+      ],
+
+      'product.id' => [
+        'nullable',
+        'exists:products,id',
       ],
 
       'product_id' => [
@@ -328,40 +405,50 @@ class AdminProductSkuController extends Controller
       ],
     ]);
 
-    if (isset($validated['product_category_id'])) {
-      $productSku->product_category_id = $validated['product_category_id'];
+    // get non null parameters
+    $nonNullParameters = array_filter(
+      $validated,
+      function ($value) {
+        return $value !== null;
+      }
+    );
+
+    if (!count($nonNullParameters)) {
+      // flash error message
+      $request->session()->flash('flashData', [
+        'warning' => 'No value provided for update.',
+      ]);
     }
 
-    if (isset($validated['product_sub_category_id'])) {
-      $productSku->product_sub_category_id = $validated['product_sub_category_id'];
+    // normal parameters
+    $nonSelectParameters = [
+      'name',
+      'description',
+      'price',
+      'stock',
+      'active',
+    ];
+
+    // parameters coming from select fields
+    $selectParameters = [
+      'product_category',
+      'product_sub_category',
+      'product',
+    ];
+
+    foreach ($nonSelectParameters as $parameter) {
+      if (isset($validated[$parameter])) {
+        $productSku->$parameter = $validated[$parameter];
+      }
     }
 
-    if (isset($validated['product_id'])) {
-      $productSku->product_id = $validated['product_id'];
-    }
-
-    if (isset($validated['name'])) {
-      $productSku->name = $validated['name'];
-    }
-
-    if (isset($validated['description'])) {
-      $productSku->description = $validated['description'];
-    }
-
-    if (isset($validated['price'])) {
-      $productSku->price = $validated['price'];
-    }
-
-    if (isset($validated['stock'])) {
-      $productSku->stock = $validated['stock'];
-    }
-
-    if (isset($validated['active'])) {
-      $productSku->active = $validated['active'];
+    foreach ($selectParameters as $parameter) {
+      if (isset($validated[$parameter])) {
+        $idParameter = $parameter . '_id';
+        $productSku->$idParameter = $validated[$parameter]['id'];
+      }
     }
 
     $productSku->save();
-
-    // return redirect()->route('admin.product_sku.show', $productSku);
   }
 }

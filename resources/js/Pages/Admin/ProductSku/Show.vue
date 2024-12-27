@@ -17,12 +17,21 @@
         title="Update Route"
         :data="updateRoute"
       />
+      <DebugPanel
+        title="Page"
+        :data="$page"
+      />
+      <DebugPanel
+        title="Images"
+        :data="images"
+      />
     </DebugGrid>
 
     <AdminShowPage
       :data="productSku"
       :heading="heading"
       :sections="sections"
+      :images="images"
       :updateRoute="updateRoute"
     />
   </div>
@@ -37,6 +46,7 @@ const props = defineProps({
   productSku: { type: Object, required: true },
   heading: { type: String, required: true },
   sections: { type: Array, required: true },
+  images: { type: Array, default: [] },
   updateRoute: { type: String, required: true },
 });
 

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <InertiaHead>
+      <title>Showing Product SKU: {{ productSku.name }}</title>
+    </InertiaHead>
     <DebugGrid v-if="debug">
       <DebugPanel
         title="Product SKU"
@@ -38,6 +41,7 @@
       :images="images"
       :updateRoute="updateRoute"
       :deleteImageRoute="deleteImageRoute"
+      :addImageRoute="addImageRoute"
     />
   </div>
 </template>
@@ -54,6 +58,7 @@ const props = defineProps({
   images: { type: Array, default: [] },
   updateRoute: { type: String, required: true },
   deleteImageRoute: { type: String, required: false },
+  addImageRoute: { type: String, required: false },
 });
 
 // debug

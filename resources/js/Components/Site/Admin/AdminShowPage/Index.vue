@@ -46,6 +46,7 @@
       <AdminShowImages
         :images="images"
         :deleteImageRoute="deleteImageRoute"
+        :addImageRoute="addImageRoute"
       />
       <!-- images -->
     </div>
@@ -67,6 +68,7 @@ const props = defineProps({
   images: { type: Array, default: [] },
   updateRoute: { type: String, required: true },
   deleteImageRoute: { type: String, required: false },
+  addImageRoute: { type: String, required: false },
 });
 
 // edit button clicked

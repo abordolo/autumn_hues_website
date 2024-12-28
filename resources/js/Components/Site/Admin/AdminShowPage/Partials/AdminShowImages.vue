@@ -3,14 +3,14 @@
     <!-- heading with edit button -->
     <div class="flex items-center space-x-4">
       <Heading5 class="text-gray-500">Images</Heading5>
-      <!-- edit button -->
+      <!-- add button -->
       <div
         class="p-2 transition-colors bg-gray-200 cursor-pointer hover:text-primary-500"
-        @click="showForm = true"
+        @click="isVisibleAddImageForm = true"
       >
-        <PencilIcon class="size-5" />
+        <PlusIcon class="size-5" />
       </div>
-      <!-- edit button -->
+      <!-- add button -->
     </div>
     <!-- heading with edit button -->
 
@@ -38,7 +38,7 @@
             <!-- delete button -->
             <div
               v-if="deleteImageRoute"
-              @click="deleteClicked(image)"
+              @click="clickedDeleteImage(image)"
               class="absolute p-2 bg-red-100 cursor-pointer top-2 right-2"
             >
               <TrashIcon class="text-red-600 size-5" />
@@ -53,7 +53,7 @@
       <!-- delete confirmation message -->
       <FadeTransition>
         <div
-          v-if="showDeleteConfirmation"
+          v-if="isVisibleDeleteConfirmation"
           class="flex items-center justify-between max-w-4xl mt-4 bg-red-100"
         >
           <!-- texts and buttons -->
@@ -68,13 +68,13 @@
             <!-- buttons -->
             <div class="flex items-center mt-4 space-x-4">
               <!-- confirm button -->
-              <AppButton @click="confirmClicked">Confirm</AppButton>
+              <AppButton @click="clickedDeleteImageConfirm">Confirm</AppButton>
               <!-- confirm button -->
 
               <!-- cancel button -->
               <AppButton
                 secondary
-                @click="cancelClicked"
+                @click="clickedDeleteImageCancel"
               >
                 Cancel
               </AppButton>
@@ -101,23 +101,33 @@
     </div>
     <!-- images section -->
 
-    <!-- popup form -->
-    <Popup
-      v-if="showForm"
-      @close="showForm = false"
-    >
-      <AdminImageEditForm :images="images" />
-    </Popup>
-    <!-- popup form -->
+    <!-- add image form -->
+    <FadeTransition>
+      <div
+        v-if="isVisibleAddImageForm"
+        class="mt-8"
+      >
+        <Heading6 class="mb-4"> Add Image </Heading6>
+
+        <!-- form -->
+        <div class="max-w-4xl">
+          <AdminAddImageForm
+            :addImageRoute="addImageRoute"
+            @cancel="isVisibleAddImageForm = false"
+          />
+        </div>
+        <!-- form -->
+      </div>
+    </FadeTransition>
+    <!-- add image form -->
   </div>
 </template>
 
 <script setup>
 // imports
-import { PencilIcon } from '@heroicons/vue/24/outline';
 import { ref } from 'vue';
-import AdminImageEditForm from '@/Components/Site/Admin/AdminImageEditForm/Index.vue';
-import { TrashIcon } from '@heroicons/vue/24/outline';
+import AdminAddImageForm from '@/Components/Site/Admin/AdminAddImageForm/Index.vue';
+import { TrashIcon, PlusIcon } from '@heroicons/vue/24/outline';
 import { router } from '@inertiajs/vue3';
 import {
   showSuccessNotification,
@@ -128,39 +138,42 @@ import {
 const props = defineProps({
   images: { type: Array, default: [] },
   deleteImageRoute: { type: String, required: false },
+  addImageRoute: { type: String, required: false },
 });
 
 // show form
-const showForm = ref(false);
+const isVisibleAddImageForm = ref(true);
 
 // show delete confirmation
-const showDeleteConfirmation = ref(false);
+const isVisibleDeleteConfirmation = ref(false);
 
 // image to be deleted
 let imageToDelete = ref(null);
 
-// delete clicked
-const deleteClicked = (image) => {
+// delete button on each image
+const clickedDeleteImage = (image) => {
   if (imageToDelete.value) {
     imageToDelete.value = null;
-    showDeleteConfirmation.value = false;
+    isVisibleDeleteConfirmation.value = false;
 
     setTimeout(() => {
       imageToDelete.value = image;
-      showDeleteConfirmation.value = true;
+      isVisibleDeleteConfirmation.value = true;
     }, 300);
   } else {
     imageToDelete.value = image;
-    showDeleteConfirmation.value = true;
+    isVisibleDeleteConfirmation.value = true;
   }
 };
 
-const cancelClicked = () => {
+// cancel button on delete confirmation
+const clickedDeleteImageCancel = () => {
   imageToDelete.value = null;
-  showDeleteConfirmation.value = false;
+  isVisibleDeleteConfirmation.value = false;
 };
 
-const confirmClicked = () => {
+// confirm button on delete confirmation
+const clickedDeleteImageConfirm = () => {
   if (!imageToDelete.value) return;
   if (!props.deleteImageRoute) return;
 
@@ -173,18 +186,23 @@ const confirmClicked = () => {
     preserveScroll: true,
 
     onSuccess: () => {
-      showDeleteConfirmation.value = false;
+      isVisibleDeleteConfirmation.value = false;
       imageToDelete.value = null;
       showSuccessNotification('Image deleted successfully.');
     },
 
     onError: () => {
-      showDeleteConfirmation.value = false;
+      isVisibleDeleteConfirmation.value = false;
       imageToDelete.value = null;
       showWarningNotification('There was an error while deleting the image.');
     },
   };
 
   router.delete(props.deleteImageRoute, options);
+};
+
+// add image form submission
+const submitAddImageForm = (event) => {
+  console.log('Add image form submitted');
 };
 </script>

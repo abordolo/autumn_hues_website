@@ -319,12 +319,13 @@ class AdminProductSkuController extends Controller
     });
 
     $data = [
-      'productSku' => $productSku->only('id'),
+      'productSku' => $productSku->only('id', 'name'),
       'heading' => 'Product SKU Details',
       'sections' => $sections,
       'images' => $images,
       'updateRoute' => route('admin.product-skus.update', $productSku),
       'deleteImageRoute' => route('admin.product-skus.delete-image', $productSku),
+      'addImageRoute' => route('admin.product-skus.add-image', $productSku),
     ];
 
     return Inertia::render('Admin/ProductSku/Show', $data);

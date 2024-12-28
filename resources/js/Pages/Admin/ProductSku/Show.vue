@@ -25,6 +25,10 @@
         title="Images"
         :data="images"
       />
+      <DebugPanel
+        title="Delete Image Route"
+        :data="deleteImageRoute"
+      />
     </DebugGrid>
 
     <AdminShowPage
@@ -33,6 +37,7 @@
       :sections="sections"
       :images="images"
       :updateRoute="updateRoute"
+      :deleteImageRoute="deleteImageRoute"
     />
   </div>
 </template>
@@ -48,6 +53,7 @@ const props = defineProps({
   sections: { type: Array, required: true },
   images: { type: Array, default: [] },
   updateRoute: { type: String, required: true },
+  deleteImageRoute: { type: String, required: false },
 });
 
 // debug

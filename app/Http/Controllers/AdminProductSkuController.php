@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductImage;
 use App\Models\ProductSku;
 use App\Models\ProductSubCategory;
 use Illuminate\Http\Request;
@@ -100,10 +101,8 @@ class AdminProductSkuController extends Controller
     ];
     return Inertia::render('Admin/ProductSku/Index', $data);
   }
-
   public function show(ProductSku $productSku)
   {
-
     // product categories for dropdown
     $productCategories = ProductCategory::query()
       ->where('active', true)
@@ -325,6 +324,7 @@ class AdminProductSkuController extends Controller
       'sections' => $sections,
       'images' => $images,
       'updateRoute' => route('admin.product-skus.update', $productSku),
+      'deleteImageRoute' => route('admin.product-skus.delete-image', $productSku),
     ];
 
     return Inertia::render('Admin/ProductSku/Show', $data);
@@ -450,5 +450,18 @@ class AdminProductSkuController extends Controller
     }
 
     $productSku->save();
+  }
+
+  public function deleteImage(Request $request, ProductSku $productSku)
+  {
+    $validated = $request->validate([
+      'image_id' => [
+        'required',
+        'exists:product_images,id',
+      ],
+    ]);
+
+    $image = ProductImage::find($validated['image_id']);
+    $image->delete();
   }
 }

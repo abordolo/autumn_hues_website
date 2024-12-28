@@ -39,3 +39,8 @@ Route::prefix('admin')
   ->group(function () {
     Route::resource('product-skus', AdminProductSkuController::class);
   });
+
+Route::delete('/admin/product-skus/{product_sku}/delete-image', [
+  AdminProductSkuController::class,
+  'deleteImage'
+])->name('admin.product-skus.delete-image');

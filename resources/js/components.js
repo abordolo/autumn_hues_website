@@ -66,6 +66,9 @@ import Popup from '@/Components/Site/Popup/Index.vue';
 // notification
 import Notification from '@/Components/Site/Notification/Index.vue';
 
+// transitions
+import FadeTransition from '@/Components/Site/Transitions/FadeTransition/Index.vue';
+
 const components = [
   { name: 'Section', component: Section },
   { name: 'Container', component: Container },
@@ -133,6 +136,9 @@ const components = [
 
   // notification
   { name: 'Notification', component: Notification },
+
+  // transitions
+  { name: 'FadeTransition', component: FadeTransition },
 ];
 
 export { components };

@@ -10,6 +10,7 @@ use App\Models\ProductSubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 
@@ -465,6 +466,16 @@ class AdminProductSkuController extends Controller
     ]);
 
     $image = ProductImage::find($validated['image_id']);
+
+    // delete image file from storage
+    $imagePath = str_replace(
+      '/storage/',
+      '',
+      $image->path
+    );
+    Storage::disk('public')->delete($imagePath);
+
+    // delete image from database
     $image->delete();
   }
 

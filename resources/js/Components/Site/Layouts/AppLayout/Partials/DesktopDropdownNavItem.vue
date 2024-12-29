@@ -5,7 +5,7 @@
     @mouseleave="showDropdown = false"
   >
     <nav
-      class="font-medium transition-colors duration-300 cursor-pointer hover:text-primary-500"
+      class="font-medium text-white transition-colors duration-300 cursor-pointer hover:text-primary-500"
     >
       {{ navItem.name }}
     </nav>
@@ -29,7 +29,7 @@
               :href="item.url"
               class="block hover:bg-gray-100"
             >
-              <div class="px-4 py-2">{{ item.name }}</div>
+              <Medium class="px-4 py-2 font-medium">{{ item.name }}</Medium>
             </InertiaLink>
           </template>
         </div>

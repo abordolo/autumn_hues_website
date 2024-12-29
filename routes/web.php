@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactUsPageController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestPageController;
@@ -17,6 +18,11 @@ Route::get('/', [
   HomePageController::class,
   'index'
 ])->name('home.index');
+
+Route::get('/contact-us', [
+  ContactUsPageController::class,
+  'index'
+])->name('contact-us.index');
 
 require __DIR__ . '/product_category.php';
 require __DIR__ . '/product.php';

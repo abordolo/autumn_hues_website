@@ -1,11 +1,13 @@
 <template>
   <div>
+    <!-- hamburger -->
     <div
       @click="showMenu"
-      class="p-2 bg-gray-100 border cursor-pointer"
+      class="p-2 bg-gray-100 border rounded cursor-pointer"
     >
       <Bars3Icon class="size-6" />
     </div>
+    <!-- hamburger -->
 
     <!-- background screen -->
     <Transition>
@@ -21,7 +23,7 @@
     <div
       v-if="menuVisible"
       @click="hideMenu"
-      class="fixed z-40 p-2 bg-gray-100 border top-4 right-4"
+      class="fixed z-40 p-2 bg-gray-100 border rounded cursor-pointer top-4 right-4"
     >
       <XMarkIcon class="text-gray-500 size-8" />
     </div>
@@ -37,7 +39,11 @@
       <div
         v-if="menuVisible"
         class="fixed inset-0 z-30 bg-white max-w-[360px]"
-      ></div>
+      >
+        <div class="p-4 bg-neutral-700">
+          <Logo />
+        </div>
+      </div>
     </Transition>
     <!-- sidebar -->
   </div>

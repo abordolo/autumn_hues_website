@@ -69,6 +69,9 @@ import Notification from '@/Components/Site/Notification/Index.vue';
 // transitions
 import FadeTransition from '@/Components/Site/Transitions/FadeTransition/Index.vue';
 
+// pagination
+import Pagination from '@/Components/Site/Pagination/Index.vue';
+
 const components = [
   { name: 'Section', component: Section },
   { name: 'Container', component: Container },
@@ -139,6 +142,9 @@ const components = [
 
   // transitions
   { name: 'FadeTransition', component: FadeTransition },
+
+  // pagination
+  { name: 'Pagination', component: Pagination },
 ];
 
 export { components };

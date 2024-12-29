@@ -11,16 +11,12 @@ const navItems = [
     type: 'dropdown',
     items: [
       {
-        name: 'Category 1',
-        url: '#',
+        name: 'Jewelry',
+        url: route('product-categories.show', 'jewelry'),
       },
       {
-        name: 'Category 2',
-        url: '#',
-      },
-      {
-        name: 'Category 3',
-        url: '#',
+        name: 'Eco Product',
+        url: route('product-categories.show', 'eco-products'),
       },
     ],
   },
@@ -28,7 +24,7 @@ const navItems = [
   {
     name: 'Contact Us',
     type: 'link',
-    url: '/contact',
+    url: route('contact-us.index'),
     component: 'Home/Index',
   },
 ];

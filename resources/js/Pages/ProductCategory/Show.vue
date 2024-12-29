@@ -73,7 +73,7 @@ const props = defineProps({
 });
 
 // debug
-const debug = ref(true);
+const debug = ref(false);
 
 // products in single category
 const productsInCategory = (categoryId) => {

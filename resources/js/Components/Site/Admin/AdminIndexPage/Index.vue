@@ -1,13 +1,24 @@
 <template>
   <div>
-    <Heading1>{{ heading }}</Heading1>
+    <!-- heading and pagination -->
+    <div class="flex items-center justify-between space-x-4">
+      <Heading1>{{ heading }}</Heading1>
+      <Pagination
+        v-if="links"
+        :links="links"
+      />
+    </div>
+    <!-- heading and pagination -->
+
+    <!-- data table -->
     <AdminDataTable
-      class="mt-12"
+      class="mt-10"
       :data="data"
       :columns="columns"
       @edit="editButtonClicked"
       @details="detailsButtonClicked"
     />
+    <!-- data table -->
   </div>
 </template>
 
@@ -19,6 +30,7 @@ import { router } from '@inertiajs/vue3';
 // props
 const props = defineProps({
   data: { type: Array, required: true },
+  links: { type: Array, required: false },
   columns: { type: Array, required: true },
   heading: { type: String, required: true },
   editRoute: { type: String, required: true },

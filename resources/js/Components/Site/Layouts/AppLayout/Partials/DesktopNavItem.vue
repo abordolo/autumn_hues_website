@@ -1,11 +1,12 @@
 <template>
   <!-- link -->
   <div v-if="navItem.type == 'link'">
-    <InertiaLink
-      :href="navItem.url"
-      class="font-medium transition-colors hover:text-primary-500 duration:300"
-    >
-      {{ navItem.name }}
+    <InertiaLink :href="navItem.url">
+      <nav
+        class="font-medium text-white transition-colors hover:text-primary-500 duration:300"
+      >
+        {{ navItem.name }}
+      </nav>
     </InertiaLink>
   </div>
   <!-- link -->

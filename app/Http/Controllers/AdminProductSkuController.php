@@ -18,8 +18,6 @@ class AdminProductSkuController extends Controller
 {
   public function index()
   {
-    $productFilterString = 'Ear Ring 1';
-
     $productSkus = DB::table('product_skus')
       ->join(
         'products',
@@ -43,7 +41,7 @@ class AdminProductSkuController extends Controller
         'products.name as product',
         'product_categories.name as product_category'
       )
-      ->paginate();
+      ->paginate(10);
 
     $columns = [
       [

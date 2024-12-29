@@ -4,12 +4,12 @@
       <img
         :src="logo"
         alt="Logo"
-        class="object-contain h-full"
+        class="object-contain h-14"
       />
     </div>
   </InertiaLink>
 </template>
 
 <script setup>
-const logo = '/logo.svg';
+const logo = '/logo.png';
 </script>

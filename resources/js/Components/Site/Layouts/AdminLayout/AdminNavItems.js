@@ -29,7 +29,7 @@ const navItems = [
 
   {
     id: 5,
-    name: 'Products Skus',
+    name: 'Products SKUs',
     href: route('admin.product-skus.index'),
     componentPrefix: 'Admin/ProductSku/Index',
   },

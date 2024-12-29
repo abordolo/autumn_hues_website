@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white">
+  <div class="py-3 bg-neutral-700">
     <Section>
       <Container>
         <div class="flex items-center justify-between">

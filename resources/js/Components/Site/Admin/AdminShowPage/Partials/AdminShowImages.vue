@@ -168,7 +168,7 @@ const props = defineProps({
 });
 
 // show form
-const isVisibleAddImageForm = ref(true);
+const isVisibleAddImageForm = ref(false);
 
 // show add more images
 const isVisibleAddMoreImages = ref(false);

@@ -1,9 +1,9 @@
 Product Category	Product Sub Category	Name	Slug	Description	Order	Active	Available
-Jewelry	Pendants	Pendant 1	pendant-1	Description	1	TRUE	TRUE
-Jewelry	Pendants	Pendant 2	pendant-2	Description	2	TRUE	TRUE
-Jewelry	Ear Rings	Ear Ring 1	ear-ring-1	Description	3	TRUE	TRUE
-Jewelry	Ear Rings	Ear Ring 2	ear-ring-2	Description	4	TRUE	TRUE
-Eco Products	Mugs	Mug 1	mug-1	Description	5	TRUE	TRUE
-Eco Products	Mugs	Mug 2	mug-2	Description	6	TRUE	TRUE
-Eco Products	Wallets	Wallet 1	wallet-1	Description	7	TRUE	TRUE
-Eco Products	Wallets	Wallet 2	wallet-2	Description	8	TRUE	TRUE
+Jewelry	Pendants	Pendant 1	pendant-1	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.	1	TRUE	TRUE
+Jewelry	Pendants	Pendant 2	pendant-2	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.	2	TRUE	TRUE
+Jewelry	Ear Rings	Ear Ring 1	ear-ring-1	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.	3	TRUE	TRUE
+Jewelry	Ear Rings	Ear Ring 2	ear-ring-2	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.	4	TRUE	TRUE
+Eco Products	Mugs	Mug 1	mug-1	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.	5	TRUE	TRUE
+Eco Products	Mugs	Mug 2	mug-2	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.	6	TRUE	TRUE
+Eco Products	Wallets	Wallet 1	wallet-1	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.	7	TRUE	TRUE
+Eco Products	Wallets	Wallet 2	wallet-2	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.	8	TRUE	TRUE

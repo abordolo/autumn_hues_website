@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductSubCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -29,45 +31,44 @@ class ProductCategoryController extends Controller
 
   public function show(ProductCategory $productCategory)
   {
-    // load the products relationship
-    $productCategory->load([
-      // products
-      'products' => function ($query) {
-        $query->where('active', 1)
-          ->where('available', 1)
-          ->orderBy('order');
-        // ->select('id', 'product_category_id', 'name', 'description');
-      },
+    $productSubCategories = ProductSubCategory::query()
+      ->where('product_category_id', $productCategory->id)
+      ->where('active', 1)
+      ->where('available', 1)
+      ->orderBy('order')
+      ->get([
+        'id',
+        'name',
+        'icon',
+        'slug',
+      ]);
 
-      // product skus
-      'products.productSkus' => function ($query) {
-        $query
-          ->where('active', 1)
-          ->where('stock', '>', 0)
-          ->select('id', 'product_id', 'price');
-      },
-    ]);
+    $products = Product::query()
+      ->where('product_category_id', $productCategory->id)
+      ->where('active', 1)
+      ->where('available', 1)
+      ->with([
+        'images' => function ($query) {
+          $query
+            ->orderBy('order')
+            ->select('id', 'product_id', 'path');
+        },
+        'productSkus' => function ($query) {
+          $query
+            ->where('active', 1)
+            ->where('stock', '>', 1)
+            ->orderBy('price')
+            ->select('id', 'product_id', 'price');
+        },
+      ])
+      ->orderBy('order')
+      ->get();
 
     $data = [
-      'productCategory' => $productCategory
+      'productCategory' => $productCategory,
+      'productSubCategories' => $productSubCategories,
+      'products' => $products,
     ];
-
-    $productCategory->makeHidden([
-      'id',
-      'slug',
-      'created_at',
-      'updated_at',
-    ]);
-
-    $productCategory->products->makeHidden([
-      'id',
-      'product_category_id',
-      'order',
-      'active',
-      'available',
-      'created_at',
-      'updated_at',
-    ]);
 
     return Inertia::render('ProductCategory/Show', $data);
   }

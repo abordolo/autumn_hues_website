@@ -42,7 +42,7 @@ import FormLabel from './Components/Site/Form/FormLabel.vue';
 import HorizontalTabBar from '@/Components/Site/Tabs/HorizontalTabBar.vue';
 
 // page headings
-import PageHeading from '@/Components/Site/PageHeadings/PageHeading.vue';
+import PageHeading from '@/Components/Site/PageHeading/Index.vue';
 
 // animate on scroll
 import AnimateOnScroll from '@/Components/Site/AnimateOnScroll/AnimateOnScroll.vue';

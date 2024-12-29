@@ -2,12 +2,11 @@
   <button
     :class="buttonClasses"
     :disabled="disabled"
-    v-if="!link"
   >
     <!-- content -->
-    <Small :class="contentClasses">
+    <p :class="contentClasses">
       <slot />
-    </Small>
+    </p>
     <!-- content -->
 
     <!-- loading indicator -->
@@ -18,24 +17,6 @@
     />
     <!-- loading indicator -->
   </button>
-
-  <!-- link -->
-  <div v-else>
-    <InertiaLink :href="href">
-      <!-- w-full is required in case width is specified from outside as attribute -->
-      <div
-        :class="buttonClasses"
-        class="w-full"
-      >
-        <!-- content -->
-        <Small :class="contentClasses">
-          <slot />
-        </Small>
-        <!-- content -->
-      </div>
-    </InertiaLink>
-  </div>
-  <!-- link -->
 </template>
 
 <script setup>
@@ -49,8 +30,8 @@ const props = defineProps({
   disabled: { type: Boolean, default: false },
   primary: { type: Boolean, default: true },
   secondary: { type: Boolean, default: false },
-  link: { type: Boolean, default: false },
   href: { type: String, default: '#' },
+  small: { type: Boolean, default: false },
 });
 
 // button classes
@@ -63,10 +44,6 @@ const buttonClasses = computed(() => {
     // transitions
     'transition-colors',
     'duration-300',
-
-    // size
-    'px-6',
-    'py-3',
 
     // appearance
     'border',
@@ -93,6 +70,13 @@ const buttonClasses = computed(() => {
     );
   }
 
+  // size
+  if (props.small) {
+    baseClasses.push('px-2', 'py-1');
+  } else {
+    baseClasses.push('px-6', 'py-3');
+  }
+
   return baseClasses;
 });
 
@@ -105,6 +89,9 @@ const contentClasses = computed(() => {
 
     // appearance
     'font-semibold',
+
+    // disable selection
+    'select-none',
   ];
 
   // opacity
@@ -112,6 +99,13 @@ const contentClasses = computed(() => {
     baseClasses.push('opacity-0');
   } else if (props.disabled) {
     baseClasses.push('opacity-50');
+  }
+
+  // size
+  if (props.small) {
+    baseClasses.push('text-sm');
+  } else {
+    baseClasses.push('text-base');
   }
 
   return baseClasses;

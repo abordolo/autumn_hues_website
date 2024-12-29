@@ -19,7 +19,7 @@ Route::get('/', [
 ])->name('home.index');
 
 require __DIR__ . '/product_category.php';
+require __DIR__ . '/product.php';
 
 require __DIR__ . '/admin.php';
-
 require __DIR__ . '/auth.php';

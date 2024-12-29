@@ -3,19 +3,20 @@
 use App\Http\Controllers\AdminHomePageController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // index
-Route::get('/product-categories', [
-  ProductCategoryController::class,
+Route::get('/products', [
+  ProductController::class,
   'index'
-])->name('product-categories.index');
+])->name('products.index');
 
 // show
-Route::get('/product-categories/{productCategory:slug}', [
-  ProductCategoryController::class,
+Route::get('/products/{product:slug}', [
+  ProductController::class,
   'show'
-])->name('product-categories.show');
+])->name('products.show');

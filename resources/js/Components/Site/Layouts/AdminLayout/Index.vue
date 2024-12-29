@@ -1,8 +1,8 @@
 <template>
-  <div class="flex">
-    <AdminSidebar class="sticky top-0 shrink-0" />
+  <div>
+    <AdminSidebar />
 
-    <div class="flex-1 px-6 py-4 overflow-x-auto">
+    <div class="ml-[320px] flex-1 px-6 py-4 overflow-x-auto">
       <slot />
     </div>
 

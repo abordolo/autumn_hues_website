@@ -45,7 +45,7 @@ Route::delete('/admin/product-skus/{product_sku}/delete-image', [
   'deleteImage'
 ])->name('admin.product-skus.delete-image');
 
-Route::delete('/admin/product-skus/{product_sku}/add-image', [
+Route::post('/admin/product-skus/{product_sku}/add-image', [
   AdminProductSkuController::class,
-  'deleteImage'
+  'addImage'
 ])->name('admin.product-skus.add-image');

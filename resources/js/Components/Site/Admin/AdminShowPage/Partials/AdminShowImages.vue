@@ -2,10 +2,13 @@
   <div>
     <!-- heading with edit button -->
     <div class="flex items-center space-x-4">
+      <!-- heading -->
       <Heading5 class="text-gray-500">Images</Heading5>
+      <!-- heading -->
+
       <!-- add button -->
       <div
-        class="p-2 transition-colors bg-gray-200 cursor-pointer hover:text-primary-500"
+        class="p-2 transition-colors bg-gray-200 rounded cursor-pointer hover:text-primary-500"
         @click="isVisibleAddImageForm = true"
       >
         <PlusIcon class="size-5" />
@@ -28,7 +31,9 @@
           :key="image.id"
         >
           <!-- single image -->
-          <div class="relative h-48 bg-gray-100">
+          <div
+            class="relative h-48 overflow-hidden bg-gray-100 border-gray-200 rounded-md shadow-md"
+          >
             <img
               :src="image.path"
               class="object-cover object-center w-full h-full"
@@ -39,7 +44,7 @@
             <div
               v-if="deleteImageRoute"
               @click="clickedDeleteImage(image)"
-              class="absolute p-2 bg-red-100 cursor-pointer top-2 right-2"
+              class="absolute p-2 bg-red-100 rounded shadow-md cursor-pointer top-2 right-2"
             >
               <TrashIcon class="text-red-600 size-5" />
             </div>
@@ -49,57 +54,57 @@
         </template>
       </div>
       <!-- images -->
-
-      <!-- delete confirmation message -->
-      <FadeTransition>
-        <div
-          v-if="isVisibleDeleteConfirmation"
-          class="flex items-center justify-between max-w-4xl mt-4 bg-red-100"
-        >
-          <!-- texts and buttons -->
-          <div class="p-6">
-            <!-- texts -->
-            <div>
-              <Heading6>Confirm Deletion</Heading6>
-              <BodyText> Are you sure to delete the image? </BodyText>
-            </div>
-            <!-- texts -->
-
-            <!-- buttons -->
-            <div class="flex items-center mt-4 space-x-4">
-              <!-- confirm button -->
-              <AppButton @click="clickedDeleteImageConfirm">Confirm</AppButton>
-              <!-- confirm button -->
-
-              <!-- cancel button -->
-              <AppButton
-                secondary
-                @click="clickedDeleteImageCancel"
-              >
-                Cancel
-              </AppButton>
-              <!-- cancel button -->
-            </div>
-            <!-- buttons -->
-          </div>
-          <!-- texts and buttons -->
-
-          <!-- image preview -->
-          <div
-            v-if="imageToDelete"
-            class="w-48"
-          >
-            <img
-              :src="imageToDelete.path"
-              class="object-cover object-center w-full h-full"
-            />
-          </div>
-          <!-- image preview -->
-        </div>
-      </FadeTransition>
-      <!-- delete confirmation message -->
     </div>
     <!-- images section -->
+
+    <!-- delete confirmation message -->
+    <FadeTransition>
+      <div
+        v-if="isVisibleDeleteConfirmation"
+        class="flex items-center justify-between max-w-4xl p-6 mt-6 bg-red-100 rounded-md shadow-md"
+      >
+        <!-- texts and buttons -->
+        <div>
+          <!-- texts -->
+          <div>
+            <Heading6>Confirm Deletion</Heading6>
+            <BodyText> Are you sure to delete the image? </BodyText>
+          </div>
+          <!-- texts -->
+
+          <!-- buttons -->
+          <div class="flex items-center mt-4 space-x-4">
+            <!-- confirm button -->
+            <AppButton @click="clickedDeleteImageConfirm">Confirm</AppButton>
+            <!-- confirm button -->
+
+            <!-- cancel button -->
+            <AppButton
+              secondary
+              @click="clickedDeleteImageCancel"
+            >
+              Cancel
+            </AppButton>
+            <!-- cancel button -->
+          </div>
+          <!-- buttons -->
+        </div>
+        <!-- texts and buttons -->
+
+        <!-- image preview -->
+        <div
+          v-if="imageToDelete"
+          class="w-48"
+        >
+          <img
+            :src="imageToDelete.path"
+            class="object-cover object-center w-full h-full"
+          />
+        </div>
+        <!-- image preview -->
+      </div>
+    </FadeTransition>
+    <!-- delete confirmation message -->
 
     <!-- add image form -->
     <FadeTransition>
@@ -111,22 +116,43 @@
 
         <!-- form -->
         <div class="max-w-4xl">
-          <AdminAddImageForm
+          <AddImageForm
             :addImageRoute="addImageRoute"
-            @cancel="isVisibleAddImageForm = false"
+            @success="successAddImage"
+            @cancel="cancelAddImage"
           />
         </div>
         <!-- form -->
       </div>
     </FadeTransition>
     <!-- add image form -->
+
+    <!-- add more image section -->
+    <FadeTransition>
+      <div
+        v-if="isVisibleAddMoreImages"
+        class="mt-6"
+      >
+        <Heading6>Do you want to add more image?</Heading6>
+        <div class="flex items-center mt-4 space-x-4">
+          <AppButton @click="clickedAddMoreImages"> Add more image </AppButton>
+          <AppButton
+            secondary
+            @click="clickedCancelAddMoreImages"
+          >
+            I am done
+          </AppButton>
+        </div>
+      </div>
+    </FadeTransition>
+    <!-- add more image section -->
   </div>
 </template>
 
 <script setup>
 // imports
 import { ref } from 'vue';
-import AdminAddImageForm from '@/Components/Site/Admin/AdminAddImageForm/Index.vue';
+import AddImageForm from '@/Components/Site/Form/AddImageForm/Index.vue';
 import { TrashIcon, PlusIcon } from '@heroicons/vue/24/outline';
 import { router } from '@inertiajs/vue3';
 import {
@@ -144,6 +170,9 @@ const props = defineProps({
 // show form
 const isVisibleAddImageForm = ref(true);
 
+// show add more images
+const isVisibleAddMoreImages = ref(false);
+
 // show delete confirmation
 const isVisibleDeleteConfirmation = ref(false);
 
@@ -152,10 +181,15 @@ let imageToDelete = ref(null);
 
 // delete button on each image
 const clickedDeleteImage = (image) => {
+  // hide other sections
+  isVisibleAddImageForm.value = false;
+  isVisibleAddMoreImages.value = false;
+
   if (imageToDelete.value) {
     imageToDelete.value = null;
     isVisibleDeleteConfirmation.value = false;
 
+    // wait for delete confirmation to hide
     setTimeout(() => {
       imageToDelete.value = image;
       isVisibleDeleteConfirmation.value = true;
@@ -201,8 +235,29 @@ const clickedDeleteImageConfirm = () => {
   router.delete(props.deleteImageRoute, options);
 };
 
-// add image form submission
-const submitAddImageForm = (event) => {
-  console.log('Add image form submitted');
+// success add image
+const successAddImage = () => {
+  isVisibleAddImageForm.value = false;
+  setTimeout(() => {
+    isVisibleAddMoreImages.value = true;
+  }, 300);
+};
+
+// cancel add image
+const cancelAddImage = () => {
+  isVisibleAddImageForm.value = false;
+};
+
+// clicked add more images
+const clickedAddMoreImages = () => {
+  isVisibleAddMoreImages.value = false;
+  setTimeout(() => {
+    isVisibleAddImageForm.value = true;
+  }, 300);
+};
+
+// clicked cancel add more images
+const clickedCancelAddMoreImages = () => {
+  isVisibleAddMoreImages.value = false;
 };
 </script>

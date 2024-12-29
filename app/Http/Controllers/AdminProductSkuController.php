@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class AdminProductSkuController extends Controller
 {
@@ -326,6 +327,7 @@ class AdminProductSkuController extends Controller
       'updateRoute' => route('admin.product-skus.update', $productSku),
       'deleteImageRoute' => route('admin.product-skus.delete-image', $productSku),
       'addImageRoute' => route('admin.product-skus.add-image', $productSku),
+      'editResourceRoute' => route('admin.product-skus.edit', $productSku),
     ];
 
     return Inertia::render('Admin/ProductSku/Show', $data);
@@ -464,5 +466,56 @@ class AdminProductSkuController extends Controller
 
     $image = ProductImage::find($validated['image_id']);
     $image->delete();
+  }
+
+  public function addImage(Request $request, ProductSku $productSku)
+  {
+    // dd('add image');
+    $productSku->load([
+      'product',
+      'productCategory',
+      'productSubCategory',
+    ]);
+
+    $request->validate([
+      'image' => [
+        'required',
+        'image',
+        'mimes:jpeg,png,jpg,gif,svg',
+        'max:2048',
+      ],
+    ]);
+
+    // components for the filename
+    $productNameSlug = Str::slug($productSku->product->name);
+    $productCategoryNameSlug = Str::slug($productSku->productCategory->name);
+    $productSubCategoryNameSlug = Str::slug($productSku->productSubCategory->name);
+    $productSkuNameSlug = Str::slug($productSku->name);
+    $fileNameComponents = [
+      $productNameSlug,
+      $productCategoryNameSlug,
+      $productSubCategoryNameSlug,
+      $productSkuNameSlug,
+      time(),
+    ];
+
+    // $fileName = $request->file('image')->getClientOriginalName();
+    $fileExtension = $request->file('image')->getClientOriginalExtension();
+
+    $fileName = implode('-', $fileNameComponents);
+    $fileName = "{$fileName}.{$fileExtension}";
+    $path = $request
+      ->file('image')
+      ->storeAs(
+        'product_images',
+        $fileName,
+        'public'
+      );
+
+    $productImage = new ProductImage();
+    $productImage->product_id = $productSku->product->id;
+    $productImage->product_sku_id = $productSku->id;
+    $productImage->path = "/storage/{$path}";
+    $productImage->save();
   }
 }

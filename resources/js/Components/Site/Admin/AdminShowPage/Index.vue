@@ -1,11 +1,21 @@
 <template>
-  <div class="mb-16">
+  <div class="mb-48">
     <!-- page heading -->
     <Heading1>{{ heading }}</Heading1>
     <!-- page heading -->
 
+    <!-- images -->
+    <div class="mt-12">
+      <AdminShowImages
+        :images="images"
+        :deleteImageRoute="deleteImageRoute"
+        :addImageRoute="addImageRoute"
+      />
+    </div>
+    <!-- images -->
+
     <!-- sections -->
-    <div class="mt-10 space-y-12">
+    <div class="mt-12 space-y-12">
       <template
         v-for="section in sections"
         :key="section.title"
@@ -41,16 +51,30 @@
         </div>
         <!-- single section -->
       </template>
-
-      <!-- images -->
-      <AdminShowImages
-        :images="images"
-        :deleteImageRoute="deleteImageRoute"
-        :addImageRoute="addImageRoute"
-      />
-      <!-- images -->
     </div>
     <!-- sections -->
+
+    <!-- buttons -->
+    <div class="flex items-center mt-12 space-x-4">
+      <!-- primary button -->
+      <AppButton
+        v-if="editResourceRoute"
+        @click="clickedEditButton"
+      >
+        Edit Record
+      </AppButton>
+      <!-- primary button -->
+
+      <!-- secondary button -->
+      <AppButton
+        secondary
+        @click="clickedGoBack"
+      >
+        Go Back
+      </AppButton>
+      <!-- secondary button -->
+    </div>
+    <!-- buttons -->
   </div>
 </template>
 
@@ -59,6 +83,7 @@
 import { router } from '@inertiajs/vue3';
 import AdminShowSingleField from './Partials/AdminShowSingleField.vue';
 import AdminShowImages from './Partials/AdminShowImages.vue';
+import { popRoute } from '@/Helpers/NavigationHelpers';
 
 // props
 const props = defineProps({
@@ -69,17 +94,19 @@ const props = defineProps({
   updateRoute: { type: String, required: true },
   deleteImageRoute: { type: String, required: false },
   addImageRoute: { type: String, required: false },
+  editResourceRoute: { type: String, required: false },
 });
 
 // edit button clicked
-const editButtonClicked = (record) => {
-  const url = route(props.editRoute, { product_sku: record.id });
-  router.get(url);
+const clickedEditButton = (record) => {
+  const options = {
+    replace: true,
+  };
+  router.get(props.editResourceRoute, options);
 };
 
 // details button clicked
-const detailsButtonClicked = (record) => {
-  const url = route(props.detailsRoute, { product_sku: record.id });
-  router.get(url);
+const clickedGoBack = () => {
+  popRoute();
 };
 </script>

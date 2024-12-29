@@ -1,9 +1,7 @@
 <template>
-  <div class="h-[100vh] overflow-auto bg-gray-100 w-[320px]">
+  <div class="fixed top-0 bottom-0 overflow-auto bg-gray-100 w-[320px]">
     <!-- logo -->
-    <div class="px-4 pt-4">
-      <Logo />
-    </div>
+    <div class="px-4 pt-4"><Logo /></div>
     <!-- logo -->
 
     <!-- menu item container -->

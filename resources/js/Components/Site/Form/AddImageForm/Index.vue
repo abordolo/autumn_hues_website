@@ -1,12 +1,13 @@
 <template>
   <div>
     <DebugPanel
+      v-if="debug"
       class="mb-4"
       title="form"
       :data="form"
     />
 
-    <!-- preview -->
+    <!-- image preview -->
     <div
       v-if="imageObjUrl"
       class="mb-4 border size-24"
@@ -16,8 +17,9 @@
         class="object-cover object-center w-full h-full"
       />
     </div>
-    <!-- preview -->
+    <!-- image preview -->
 
+    <!-- add image form -->
     <form @submit.prevent="submit">
       <!-- fields -->
       <FormFileInput
@@ -40,11 +42,16 @@
       </div>
       <!-- buttons -->
     </form>
+    <!-- add image form -->
   </div>
 </template>
 
 <script setup>
 // imports
+import {
+  showSuccessNotification,
+  showWarningNotification,
+} from '@/Helpers/NotificationHelpers';
 import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
@@ -54,10 +61,15 @@ const props = defineProps({
 });
 
 // emits
-const emits = defineEmits(['cancel']);
+const emits = defineEmits(['success', 'cancel', 'error']);
 
+// debug
+const debug = ref(false);
+
+// form
 const form = useForm({
   image: null,
+  order: 1,
 });
 
 // clicked cancel
@@ -65,7 +77,7 @@ const clickedCancel = () => {
   emits('cancel');
 };
 
-// computed
+// to display preview
 const imageObjUrl = computed(() => {
   if (form.image) {
     return URL.createObjectURL(form.image);
@@ -76,6 +88,26 @@ const imageObjUrl = computed(() => {
 
 // submit
 const submit = () => {
-  console.log('form submitted');
+  if (!form.image) {
+    showWarningNotification('Please select an image');
+    return;
+  }
+
+  // isVisibleForm.value = false;
+  // return;
+
+  const options = {
+    preserveScroll: true,
+    onSuccess: () => {
+      form.reset();
+      emits('success');
+    },
+    onError: () => {
+      showWarningNotification('Failed to add image');
+      emits('error');
+    },
+  };
+
+  form.post(props.addImageRoute, options);
 };
 </script>

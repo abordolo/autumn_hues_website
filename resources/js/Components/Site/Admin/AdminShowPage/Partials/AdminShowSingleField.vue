@@ -1,9 +1,9 @@
 <template>
-  <div class="relative p-4 bg-gray-100 border">
+  <div class="relative p-4 bg-gray-100 rounded-md shadow">
     <!-- edit button -->
     <div
       v-if="field.edit"
-      class="absolute p-2 transition-colors bg-gray-200 cursor-pointer top-2 right-2 hover:text-primary-500"
+      class="absolute p-2 transition-colors bg-gray-200 rounded cursor-pointer top-2 right-2 hover:text-primary-500"
       @click="showForm = true"
     >
       <PencilIcon class="size-5" />

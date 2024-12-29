@@ -3,6 +3,8 @@
     <InertiaHead>
       <title>Showing Product SKU: {{ productSku.name }}</title>
     </InertiaHead>
+
+    <!-- debug -->
     <DebugGrid v-if="debug">
       <DebugPanel
         title="Product SKU"
@@ -33,6 +35,7 @@
         :data="deleteImageRoute"
       />
     </DebugGrid>
+    <!-- debug -->
 
     <AdminShowPage
       :data="productSku"
@@ -42,6 +45,7 @@
       :updateRoute="updateRoute"
       :deleteImageRoute="deleteImageRoute"
       :addImageRoute="addImageRoute"
+      :editResourceRoute="editResourceRoute"
     />
   </div>
 </template>
@@ -59,6 +63,7 @@ const props = defineProps({
   updateRoute: { type: String, required: true },
   deleteImageRoute: { type: String, required: false },
   addImageRoute: { type: String, required: false },
+  editResourceRoute: { type: String, required: false },
 });
 
 // debug

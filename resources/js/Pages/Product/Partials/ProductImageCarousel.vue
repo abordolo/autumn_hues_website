@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-hidden rounded-md shadow-lg">
     <swiper-container init="false">
       <swiper-slide
         v-for="image in images"
@@ -28,10 +28,10 @@ const props = defineProps({
   images: { type: Array, default: [] },
 });
 
-register();
-
 onMounted(() => {
   const swiperEl = document.querySelector('swiper-container');
+
+  register();
 
   const params = {
     modules: [Navigation, Pagination, A11y],

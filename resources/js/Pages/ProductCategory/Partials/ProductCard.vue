@@ -30,9 +30,9 @@
       <!-- name and price -->
 
       <!-- description -->
-      <Medium class="mt-2 line-clamp-3">
+      <Small class="mt-2 line-clamp-3">
         {{ product.description }}
-      </Medium>
+      </Small>
       <!-- description -->
     </div>
     <!-- contents -->

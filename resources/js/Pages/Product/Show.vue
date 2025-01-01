@@ -23,7 +23,12 @@
       <Container>
         <div class="grid grid-cols-2 gap-8">
           <!-- carousel -->
-          <ProductImageCarousel :images="selectedProductSku.images" />
+          <div>
+            <ProductImageCarousel
+              :images="selectedProductSku.images"
+              :key="selectedProductSku.id"
+            />
+          </div>
           <!-- carousel -->
 
           <!-- contents -->

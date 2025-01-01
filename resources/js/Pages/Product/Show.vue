@@ -23,7 +23,7 @@
       <Container>
         <div class="grid grid-cols-2 gap-8">
           <!-- carousel -->
-          <ProductImageCarousel />
+          <ProductImageCarousel :images="selectedProductSku.images" />
           <!-- carousel -->
 
           <!-- contents -->
@@ -55,6 +55,12 @@
                       <button
                         :class="variationTileClasses(variationType, variation)"
                         @click="clickedVariationTile(variationType, variation)"
+                        :disabled="
+                          shouldVariationTileBeDisabled(
+                            variationType,
+                            variation
+                          )
+                        "
                       >
                         <ExtraSmall class="font-medium">
                           {{ variation.name }}
@@ -121,6 +127,8 @@ const variationTileClasses = (variationType, variation) => {
     'min-w-[80px]',
     'disabled:bg-gray-100',
     'disabled:cursor-not-allowed',
+    'transition-colors',
+    'duration-200',
   ];
 
   if (selectedVariation.value[variationTypeName] === variationName) {
@@ -138,5 +146,71 @@ const clickedVariationTile = (variationType, variation) => {
   const variationName = variation.name;
 
   selectedVariation.value[variationTypeName] = variationName;
+
+  for (let i = 0; i < props.productSkus.length; i++) {
+    const productSku = props.productSkus[i];
+    let isMatched = true;
+
+    for (let j = 0; j < props.variationTypes.length; j++) {
+      // iterator variation type
+      const variationType = props.variationTypes[j];
+
+      const variationTypeName = variationType.name;
+      const selectedVariationName = selectedVariation.value[variationTypeName];
+      const currentProductSkuVariationName = productSku[variationTypeName];
+
+      if (currentProductSkuVariationName !== selectedVariationName) {
+        isMatched = false;
+        break;
+      }
+    }
+
+    if (isMatched) {
+      selectedProductSku.value = productSku;
+      break;
+    }
+  }
+};
+
+// are equal objects
+const areEqualObjects = (object1, object2) => {
+  if (object1 == null || object2 == null) {
+    return false;
+  }
+
+  const object1Keys = Object.keys(object1);
+  const object2Keys = Object.keys(object2);
+
+  if (object1Keys.length !== object2Keys.length) {
+    return false;
+  }
+
+  for (let i = 0; i < object1Keys.length; i++) {
+    const key = object1Keys[i];
+    const value1 = object1[key];
+    const value2 = object2[key];
+
+    if (value1 !== value2) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+// should tile be disabled
+const shouldVariationTileBeDisabled = (variationType, variation) => {
+  let selectedVariationClone = { ...selectedVariation.value };
+  selectedVariationClone[variationType.name] = variation.name;
+
+  for (let i = 0; i < props.variationCombinations.length; i++) {
+    const variationCombination = props.variationCombinations[i];
+
+    if (areEqualObjects(selectedVariationClone, variationCombination)) {
+      return false;
+    }
+  }
+
+  return true;
 };
 </script>

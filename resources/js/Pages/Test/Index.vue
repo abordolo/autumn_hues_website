@@ -16,8 +16,7 @@
 <script setup>
 import { register } from 'swiper/element/bundle';
 import { Navigation, Pagination, A11y } from 'swiper/modules';
-
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 
 register();
 
@@ -43,7 +42,7 @@ onMounted(() => {
     //   }
     // `,
     // ],
-    injectStylesUrls: ['swiper.css'],
+    injectStylesUrls: ['/swiper.css'],
   };
 
   Object.assign(swiperEl, params);

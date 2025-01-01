@@ -29,11 +29,16 @@
           <!-- contents -->
           <div>
             <!-- product details -->
-            <Heading5>{{ product.name }}</Heading5>
-            <ExtraSmall class="font-medium">
-              {{ selectedProductSku?.description }}
-            </ExtraSmall>
-            <Medium class="mt-2">{{ product.description }}</Medium>
+            <div>
+              <Heading5>{{ product.name }}</Heading5>
+              <ExtraSmall class="font-medium">
+                {{ selectedProductSku?.description }}
+              </ExtraSmall>
+              <Medium class="mt-2">{{ product.description }}</Medium>
+
+              <Small class="mt-6 font-semibold text-gray-500">Price</Small>
+              <Heading5> £{{ selectedProductSku.price }} </Heading5>
+            </div>
             <!-- product details -->
 
             <!-- variation types -->
@@ -75,6 +80,28 @@
               </template>
             </div>
             <!-- variation types -->
+
+            <!-- buttons -->
+            <div class="mt-12">
+              <div class="flex items-center space-x-4">
+                <AppButton>Add to Cart</AppButton>
+                <AppButton secondary>Customize</AppButton>
+              </div>
+            </div>
+            <!-- buttons -->
+
+            <!-- send inquiry button -->
+            <button class="flex items-center mt-4 space-x-1 group">
+              <InformationCircleIcon
+                class="transition-colors duration-200 size-4 group-hover:text-primary-500 shrink-0"
+              />
+              <ExtraSmall
+                class="mt-px font-medium transition-colors duration-200 group-hover:text-primary-500 shrink-0 group-hover:underline"
+              >
+                Send inquiry about this product
+              </ExtraSmall>
+            </button>
+            <!-- send inquiry button -->
           </div>
           <!-- contents -->
         </div>
@@ -89,6 +116,7 @@
 import { ref, computed } from 'vue';
 import ProductImageCarousel from './Partials/ProductImageCarousel.vue';
 import ExtraSmall from '@/Components/Site/Texts/ExtraSmall.vue';
+import { InformationCircleIcon } from '@heroicons/vue/24/outline';
 
 // props
 const props = defineProps({
@@ -99,7 +127,7 @@ const props = defineProps({
 });
 
 // debug
-const debug = ref(true);
+const debug = ref(false);
 
 // selected product sku
 const selectedProductSku = ref(props.productSkus[0]);
@@ -153,9 +181,9 @@ const clickedVariationTile = (variationType, variation) => {
 
     for (let j = 0; j < props.variationTypes.length; j++) {
       // iterator variation type
-      const variationType = props.variationTypes[j];
+      const iteratorVariationType = props.variationTypes[j];
 
-      const variationTypeName = variationType.name;
+      const variationTypeName = iteratorVariationType.name;
       const selectedVariationName = selectedVariation.value[variationTypeName];
       const currentProductSkuVariationName = productSku[variationTypeName];
 

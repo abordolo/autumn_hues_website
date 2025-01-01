@@ -23,24 +23,12 @@ class VariationSeeder extends Seeder
     $seeding_file_name = storage_path('database_seeding_files/' . 'variations.tsv');
 
     $columns = [
-      SeederHelper::getColumnDefinition(
-        'product_category_id',
-        'Product Category',
-        'relationship',
-        ProductCategory::class
-      ),
-      SeederHelper::getColumnDefinition(
-        'product_sub_category_id',
-        'Product Sub Category',
-        'relationship',
-        ProductSubCategory::class
-      ),
-      SeederHelper::getColumnDefinition(
-        'product_id',
-        'Product',
-        'relationship',
-        Product::class
-      ),
+      // SeederHelper::getColumnDefinition(
+      //   'product_id',
+      //   'Product',
+      //   'relationship',
+      //   Product::class
+      // ),
       SeederHelper::getColumnDefinition(
         'product_sku_id',
         'Product Sku',

@@ -1,41 +1,73 @@
-Product Category	Product Sub Category	Product	Product Sku	Variation Type	Name
-Jewelry	Pendants	Pendant 1	Pendant 1 (Red, XS)	Color	Red
-Jewelry	Pendants	Pendant 1	Pendant 1 (Red, S)	Color	Red
-Jewelry	Pendants	Pendant 1	Pendant 1 (Red, M)	Color	Red
-Jewelry	Pendants	Pendant 1	Pendant 1 (Red, L)	Color	Red
-Jewelry	Pendants	Pendant 1	Pendant 1 (Green, XS)	Color	Green
-Jewelry	Pendants	Pendant 1	Pendant 1 (Green, S)	Color	Green
-Jewelry	Pendants	Pendant 1	Pendant 1 (Green, M)	Color	Green
-Jewelry	Pendants	Pendant 1	Pendant 1 (Green, L)	Color	Green
-Jewelry	Pendants	Pendant 2	Pendant 2 (Red, XS)	Size	XS
-Jewelry	Pendants	Pendant 2	Pendant 2 (Red, S)	Size	S
-Jewelry	Pendants	Pendant 2	Pendant 2 (Red, M)	Size	M
-Jewelry	Pendants	Pendant 2	Pendant 2 (Red, L)	Size	L
-Jewelry	Pendants	Pendant 2	Pendant 2 (Green, XS)	Size	XS
-Jewelry	Pendants	Pendant 2	Pendant 2 (Green, S)	Size	S
-Jewelry	Pendants	Pendant 2	Pendant 2 (Green, M)	Size	M
-Jewelry	Pendants	Pendant 2	Pendant 2 (Green, L)	Size	L
-Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Red, XS)	Color	Red
-Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Red, S)	Color	Red
-Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Red, M)	Color	Red
-Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Red, L)	Color	Red
-Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Green, XS)	Color	Green
-Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Green, S)	Color	Green
-Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Green, M)	Color	Green
-Jewelry	Ear Rings	Ear Ring 1	Ear Ring 1 (Green, L)	Color	Green
-Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Red, XS)	Size	XS
-Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Red, S)	Size	S
-Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Red, M)	Size	M
-Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Red, L)	Size	L
-Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Green, XS)	Size	XS
-Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Green, S)	Size	S
-Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Green, M)	Size	M
-Jewelry	Ear Rings	Ear Ring 2	Ear Ring 2 (Green, L)	Size	L
-Eco Products	Mugs	Mug 1	Mug 1 (Black)	Color	Black
-Eco Products	Mugs	Mug 1	Mug 1 (Brown)	Color	Brown
-Eco Products	Mugs	Mug 2	Mug 2 (Black)	Color	Black
-Eco Products	Mugs	Mug 2	Mug 2 (Brown)	Color	Brown
-Eco Products	Wallets	Wallet 1	Wallet 1 (Black)	Color	Black
-Eco Products	Wallets	Wallet 1	Wallet 1 (Brown)	Color	Brown
-Eco Products	Wallets	Wallet 2	Wallet 2 (Black)	Color	Black
-Eco Products	Wallets	Wallet 2	Wallet 2 (Brown)	Color	Brown
+Product Sku	Variation Type	Name
+Pendant 1 (Red, XS)	Color	Red
+Pendant 1 (Red, XS)	Size	XS
+Pendant 1 (Red, S)	Color	Red
+Pendant 1 (Red, S)	Size	S
+Pendant 1 (Red, M)	Color	Red
+Pendant 1 (Red, M)	Size	M
+Pendant 1 (Red, L)	Color	Red
+Pendant 1 (Red, L)	Size	L
+Pendant 1 (Green, XS)	Color	Green
+Pendant 1 (Green, XS)	Size	XS
+Pendant 1 (Green, S)	Color	Green
+Pendant 1 (Green, S)	Size	S
+Pendant 1 (Green, M)	Color	Green
+Pendant 1 (Green, M)	Size	M
+Pendant 1 (Green, L)	Color	Green
+Pendant 1 (Green, L)	Size	M
+Pendant 2 (Red, XS)	Color	Red
+Pendant 2 (Red, XS)	Size	XS
+Pendant 2 (Red, S)	Color	Red
+Pendant 2 (Red, S)	Size	S
+Pendant 2 (Red, M)	Color	Red
+Pendant 2 (Red, M)	Size	M
+Pendant 2 (Red, L)	Color	Red
+Pendant 2 (Red, L)	Size	L
+Pendant 2 (Green, XS)	Color	Green
+Pendant 2 (Green, XS)	Size	XS
+Pendant 2 (Green, S)	Color	Green
+Pendant 2 (Green, S)	Size	S
+Pendant 2 (Green, M)	Color	Green
+Pendant 2 (Green, M)	Size	M
+Pendant 2 (Green, L)	Color	Green
+Pendant 2 (Green, L)	Size	L
+Ear Ring 1 (Red, XS)	Color	Red
+Ear Ring 1 (Red, XS)	Size	XS
+Ear Ring 1 (Red, S)	Color	Red
+Ear Ring 1 (Red, S)	Size	S
+Ear Ring 1 (Red, M)	Color	Red
+Ear Ring 1 (Red, M)	Size	M
+Ear Ring 1 (Red, L)	Color	Red
+Ear Ring 1 (Red, L)	Size	L
+Ear Ring 1 (Green, XS)	Color	Green
+Ear Ring 1 (Green, XS)	Size	XS
+Ear Ring 1 (Green, S)	Color	Green
+Ear Ring 1 (Green, S)	Size	S
+Ear Ring 1 (Green, M)	Color	Green
+Ear Ring 1 (Green, M)	Size	M
+Ear Ring 1 (Green, L)	Color	Green
+Ear Ring 1 (Green, L)	Size	L
+Ear Ring 2 (Red, XS)	Color	Red
+Ear Ring 2 (Red, XS)	Size	XS
+Ear Ring 2 (Red, S)	Color	Red
+Ear Ring 2 (Red, S)	Size	S
+Ear Ring 2 (Red, M)	Color	Red
+Ear Ring 2 (Red, M)	Size	M
+Ear Ring 2 (Red, L)	Color	Red
+Ear Ring 2 (Red, L)	Size	L
+Ear Ring 2 (Green, XS)	Color	Green
+Ear Ring 2 (Green, XS)	Size	XS
+Ear Ring 2 (Green, S)	Color	Green
+Ear Ring 2 (Green, S)	Size	S
+Ear Ring 2 (Green, M)	Color	Green
+Ear Ring 2 (Green, M)	Size	M
+Ear Ring 2 (Green, L)	Color	Green
+Ear Ring 2 (Green, L)	Size	L
+Mug 1 (Black)	Color	Black
+Mug 1 (Brown)	Color	Brown
+Mug 2 (Black)	Color	Black
+Mug 2 (Brown)	Color	Brown
+Wallet 1 (Black)	Color	Black
+Wallet 1 (Brown)	Color	Brown
+Wallet 2 (Black)	Color	Black
+Wallet 2 (Brown)	Color	Brown

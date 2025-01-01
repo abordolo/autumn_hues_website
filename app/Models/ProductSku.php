@@ -30,4 +30,9 @@ class ProductSku extends Model
   {
     return $this->hasMany(ProductImage::class, 'product_sku_id');
   }
+
+  public function variations()
+  {
+    return $this->hasMany(Variation::class);
+  }
 }

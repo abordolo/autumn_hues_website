@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Variation extends Model
 {
-    /** @use HasFactory<\Database\Factories\VariationFactory> */
-    use HasFactory;
+  /** @use HasFactory<\Database\Factories\VariationFactory> */
+  use HasFactory;
+
+  public function variationType()
+  {
+    return $this->belongsTo(VariationType::class);
+  }
 }
